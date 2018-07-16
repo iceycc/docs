@@ -3,6 +3,8 @@
 
 * 珠峰构架课程
     * [珠峰构架课程大纲](docs/zhufeng/)
+* 前端入门知识
+    * [前端三板斧](docs/base/)
 * 神秘的CSS/CSS3世界
     * [css世界](docs/css/)
 * 深入浅出ES6
