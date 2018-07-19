@@ -276,6 +276,19 @@ function add(x, y) {
 #### 圆括号运算符，return 语句和递归
 * 调用函数时使用圆括号，`fn(a,b)`，圆括号可以加入参数
 * return ，直接返回后面的表达式的值，也就是函数的返回值；如果没有return就返回undefined
+* 递归：函数可以调用自身，这就是递归（recursion）
+````javascript
+    // 通过递归，计算斐波那契数列的代码。
+    function fib(num) {
+    if (num === 0) return 0;
+    if (num === 1) return 1;
+    return fib(num - 2) + fib(num - 1);
+    }
+
+    fib(6) // 8
+````
+#### 第一等公民
+
 ### 8、对象
 * 待续..
 

@@ -7,8 +7,7 @@
     * [JavaScript](/base/javascript)
 * 神秘的CSS/CSS3世界
     * [css世界](/css/)
-* 深入浅出ES6
-    * [ES6目录](/es6/)
+* [深入浅出ES6](/es6/)
 * 前端技能栈
     * [git简单入门](/skills/001)
     * [http/网络](/skills/002)
