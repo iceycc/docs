@@ -1,5 +1,6 @@
 ## 大课程纲：{docsify-ignore-all}
 ### 一、珠峰高级全栈架构课基础部分
+- [x] 公开-异步发展流程promise原理
 - [ ] 1.ES6/ES7语法和原理实现
 - [ ] 2.异步发展过程：callback、promise、generator、co、async/await等异步流程控制(async和await的实现原理)
 - [ ] 3.JavaScript模块化发展的演进历史 CommonJS、AMD、CMD、ES6模块的演进历史

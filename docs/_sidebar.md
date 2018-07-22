@@ -3,6 +3,8 @@
 
 * 珠峰构架课程
     * [珠峰构架课程大纲](/zhufeng/)
+* 博客 
+    * [promise是什么?一篇让你读懂promise](/post/promise)
 * [前端三板斧](/base/)
     * [JavaScript](/base/javascript)
 * 神秘的CSS/CSS3世界
