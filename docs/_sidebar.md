@@ -7,6 +7,7 @@
     * [promise是什么?一篇让你读懂promise](/post/promise)
 * [前端三板斧](/base/)
     * [JavaScript](/base/javascript)
+    * [问题整理](/base/more)
 * 神秘的CSS/CSS3世界
     * [css世界](/css/)
 * [深入浅出ES6](/es6/)
