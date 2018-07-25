@@ -1,4 +1,4 @@
-# javascript {docsify-ignore}
+# javascript {docsify-ignore-all}
 
 工作中太多的使用优秀的高效的框架，原生JavaScript还是不能够忘记，自己总结下JavaScript的一些基础知识。
 <!-- more -->
