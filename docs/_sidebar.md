@@ -10,6 +10,7 @@
 * [前端三板斧](/base/)
     * [JavaScript](/base/javascript)
     * [问题整理](/base/more)
+    * [正则查询](/base/zhengze)
 * 神秘的CSS/CSS3世界
     * [css世界](/css/)
 * [深入浅出ES6](/es6/)
