@@ -20,53 +20,55 @@
 * 5.同一个promise的实例可以then多次,成功时回调用所有的成功方法，失败时会调用所有的失败方法
 * 6.new Promise中可以支持异步行为
 * 7.如果发现错误就会走入失败态
+* 
 ### 简单实现 待完善
+
 ````javascript
-// 1 定义Promise构造函数
-//   executor(resolve,reject)
-function myPromise(executor){
-    // 1 定义各种私有的变量：成功和失败的数据已经回调函数 
-    let self = this;
-    self.value = undefined;
-    self.reason = undefined;
-    self.status = 'pending';
-    self.onResolvedCallBack = [];// 成功时的回调
-    self.onRejectedCallBack = [];// 失败时的回调
-    // 成功时 将成功需要处理的的数据保存下来，将状态改为 resolved
-    function resolve(value){
-        self.value = value;
-        self.status = 'resolved';
-        // 以此执行 .then加入的成功回调
-        self.onResolvedCallBack.forEach(fn => fn(value))
-    };
-    // 失败时 将失败的原因保存下来， 状态=》 reject
-    function reject(reason){
-        self.reason = reason;
-        self.status = 'rejected';
-        self.onRejectedCallBack.forEach(fn=> fn(reason))
-    };
-    try{
-        executor(resolve,reject)
-    }catch{ // 没有传人executor函数时默认都进入 reject失败回调
-        reject()
+    // 1 定义Promise构造函数
+    //   executor(resolve,reject)
+    function myPromise(executor){
+        // 1 定义各种私有的变量：成功和失败的数据已经回调函数 
+        let self = this;
+        self.value = undefined;
+        self.reason = undefined;
+        self.status = 'pending';
+        self.onResolvedCallBack = [];// 成功时的回调
+        self.onRejectedCallBack = [];// 失败时的回调
+        // 成功时 将成功需要处理的的数据保存下来，将状态改为 resolved
+        function resolve(value){
+            self.value = value;
+            self.status = 'resolved';
+            // 以此执行 .then加入的成功回调
+            self.onResolvedCallBack.forEach(fn => fn(value))
+        };
+        // 失败时 将失败的原因保存下来， 状态=》 reject
+        function reject(reason){
+            self.reason = reason;
+            self.status = 'rejected';
+            self.onRejectedCallBack.forEach(fn=> fn(reason))
+        };
+        try{
+            executor(resolve,reject)
+        }catch{ // 没有传人executor函数时默认都进入 reject失败回调
+            reject()
+        }
     }
-}
-myPromise.prototype.then = function(onResolve,onReject){
-    let self = this
-    if('resolved' == self.status){
-        onResolve(self.value)
-    }
-    // 
-    if('rejected' == self.status){
-        onReject(self.reason)
-    }
-      if('padding' == self.status){
-    // todo：padding状态需要将回调函数进行保存
+    myPromise.prototype.then = function(onResolve,onReject){
+        let self = this
+        if('resolved' == self.status){
+            onResolve(self.value)
+        }
+        // 
+        if('rejected' == self.status){
+            onReject(self.reason)
+        }
+        if('padding' == self.status){
+        // todo：padding状态需要将回调函数进行保存
 
+        }
     }
-}
 
-module.exports = myPromise
+    module.exports = myPromise
 ````
 
 
