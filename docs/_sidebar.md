@@ -6,7 +6,7 @@
 * 博客 
     * [promise是什么？简单分析promise原理](/post/promise)
 * 面试整理
-    * 
+  
 * [前端三板斧](/base/)
     * [JavaScript](/base/javascript)
     * [问题整理](/base/more)
