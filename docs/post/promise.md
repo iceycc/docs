@@ -1,5 +1,8 @@
 ## promise是什么？一篇让你读懂promise {docsify-ignore-all}
 ### promise的三种状态
+* 等待态 pending
+* 成功态 resolved
+* 失败态 rejected
 ### promise的特点
 * 1.executor 默认时new的时候就自动执行
 * 2.每个promise的实例 都有then方法 
@@ -8,9 +11,7 @@
 * 5.同一个promise的实例可以then多次,成功时回调用所有的成功方法，失败时会调用所有的失败方法
 * 6.new Promise中可以支持异步行为
 * 7.如果发现错误就会走入失败态
-
-### 
-
+### 简单实现 待完善
 ````javascript
 // 1 定义Promise构造函数
 //   executor(resolve,reject)
@@ -50,11 +51,13 @@ myPromise.prototype.then = function(onResolve,onReject){
     if('rejected' == self.status){
         onReject(self.reason)
     }
+      if('padding' == self.status){
+    // todo：padding状态需要将回调函数进行保存
+
+    }
 }
 
 module.exports = myPromise
-
-
 ````
 
 
