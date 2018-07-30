@@ -1,4 +1,13 @@
-## promise是什么？一篇让你读懂promise {docsify-ignore-all}
+## promise是什么？简单分析promise原理 {docsify-ignore-all}
+### 预备知识
+* 回调函数
+* 高级函数
+* 发布-订阅模式
+* promise A+ 规范
+  
+### promise是什么，能干什么
+* 解决回调地狱
+* 解决多个回调函数同步结果
 ### promise的三种状态
 * 等待态 pending
 * 成功态 resolved
