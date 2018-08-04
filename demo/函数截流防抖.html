@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function doAjax() {
+            console.log('ajax函数触发了')
+        }
+
+        // 函数节流
+       function trottel(fn,delay=300){
+           let canRun = true
+           return function(){
+               if(!canRun) return;
+               canRun = false
+               setTimeout(function(){
+                   fn.apply(this,arguments)
+                   canRun = true
+               },delay)
+           }
+       }
+       
+        // 函数防抖
+        // function 
+        // debounce函数用来包裹我们的事件处理方法
+        function debounce(fn, delay) {
+            // 持久化一个定时器
+            let timer = null
+            // 闭包函数可以访问timer
+            return function () {
+                // 通过 this 和 arguments 获得函数的作用域和参数
+                let context = this
+                let args = arguments
+                // 如果事件被触发，清除timer并重新开始计时
+                clearTimeout(timer)
+                timer = setTimeout(function () {
+                    fn.apply(context, args)
+                }, delay)
+            }
+        }
+
+        function foo() {
+            console.log('You are scrolling!')
+        }
+
+        document.addEventListener('scroll', debounce(foo, 50));
+
+    </script>
+
+</body>
+
+</html>
