@@ -10,10 +10,17 @@ Promise是异步编程的一种解决方案，它可以解决异步回调地狱�
 
 * 解决回调地狱
 * 解决多个回调函数同步结果
+
+### promise的几个方法
+* promise.all()
+* promise.race()
+* promise.resolve()
+* promise.reject()
 ### promise的三种状态
 * 等待态 pending
 * 成功态 resolved
 * 失败态 rejected
+
 ### promise的特点
 * 1.executor 默认时new的时候就自动执行
 * 2.每个promise的实例 都有then方法 
@@ -22,6 +29,17 @@ Promise是异步编程的一种解决方案，它可以解决异步回调地狱�
 * 5.同一个promise的实例可以then多次,成功时回调用所有的成功方法，失败时会调用所有的失败方法
 * 6.new Promise中可以支持异步行为
 * 7.如果发现错误就会走入失败态
+
+下一次的输入需要上一次的输出 (有依赖关系)
+* 1.如果一个promise执行完后 返回的还是一个promise，会把这个promise 的执行结果，传递给下一次then中
+* 2.如果then中返回的不是promise 是一个普通值，会将这个普通值作为下次then的成功的结果
+* 3.如果当前then中失败了 会走下一个then的失败
+* 4.如果返回的是undefined 不管当前是成功还是失败 都会走下一次的成功
+* 5.catch是错误没有处理的情况下才会走
+* 6.then中可以不写东西，相当于白写 （值的穿透）
+
+
+### 
 ### promise A+ 规范
 * [原文](https://promisesaplus.com/)
 * [翻译](http://www.ituring.com.cn/article/66566)
