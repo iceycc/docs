@@ -1,13 +1,13 @@
-# 前端杂货铺
-![logo](_media/icon.svg)
+# 冰洋前端杂货铺
+![logo](_media/icon1.svg)
 
 [GitHub](https://github.com/iceycc/docs/)
-[Get Started](/README.md)
+[点击阅读](/README.md)
 
 <!-- 背景图片 -->
 
-<!-- ![](_media/bg.png) -->
+<!-- ![](_media/bg1.jpg) -->
 
 <!-- 背景色 -->
 
-![color](#dedede)
+<!-- ![color](#3f3f3f) -->
