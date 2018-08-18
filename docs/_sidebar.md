@@ -3,6 +3,7 @@
 
 * 珠峰构架课程
     * [珠峰构架课程大纲](/zhufeng/)
+    * [node超长总结](/zhufeng/1.node/note)
 * 博客 
     * [promise是什么？简单分析promise原理](/post/promise)
 * 面试整理
