@@ -1,10 +1,11 @@
 
-# 搭建node开发环境 
+# node超长总结
+## 搭建node开发环境 
 ---
-## 1、先安装一个 nvm
+### 1、先安装一个 nvm
 > `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.2/install.sh | bash`
-## 2、安装node
-## 3、npm介绍
+### 2、安装node
+### 3、npm介绍
 安装
 - 本地安装
 - 全局安装 (在命令行使用)
@@ -24,12 +25,12 @@ npm uninstall yarn -g
 - 填上用户名邮箱 密码
 - npm publish
 
-# node常见概念
-## 进程和线程
-## 异步和同步
-## 阻塞和非阻塞
-## 队列和栈 （堆）
-## 宏任务微任务
+## node常见概念
+### 进程和线程
+### 异步和同步
+### 阻塞和非阻塞
+### 队列和栈 （堆）
+### 宏任务微任务
 macrotask 和 microtask 表示异步任务的两种分类。在挂起任务时，JS 引擎会将所有任务按照类别分到这两个队列中，首先在 macrotask 的队列（这个队列也被叫做 task queue）中取出第一个任务，执行完毕后取出 microtask 队列中的所有任务顺序执行；之后再取 macrotask 任务，周而复始，直至两个队列的任务都取完。
 
 两个类别的具体分类如下：
@@ -37,11 +38,11 @@ macrotask 和 microtask 表示异步任务的两种分类。在挂起任务时�
 macro-task: script（整体代码）, setTimeout, setInterval, setImmediate, I/O, UI rendering
 micro-task: process.nextTick, Promises（这里指浏览器实现的原生 Promise）,Object.observe, MutationObserver
 
-# node的模块
+## node的模块
 ---
-## 1、全局模块
+### 1、全局模块
 不需要引入 拿来即用 `console.log(global)`得到核心对象
-### console
+#### console
 > node中console.log(this) 指向的是 module.exports, node将`this != global this=module.exports`
 > node中的全局对象是console.log(global) 
 ````javascript
@@ -73,7 +74,7 @@ Promise.resolve().then(()=>{
 // console.dir(global,{showHidden:true}); // 显示隐藏的信息
 
 ````
-### process 进程
+#### process 进程
   `console.log(process)`得到整个process对象
   
 ```` javascript
@@ -152,13 +153,13 @@ a.add('456');
 // clearImmediate / setImmediate node实现的
 
 ````
-### _filenane 和 _dirname
+#### _filenane 和 _dirname
 不是global上的属性
 _filenane当前执行文件的绝对路径  
 _dirname当前文件所在文件夹的绝对路径
-## 2、核心模块
+### 2、核心模块
 不需要安装，引入即用
-### path
+#### path
 专门用来处理路径 后缀名 路径的信息
 1、path.join([...paths])
 ````javascript  
@@ -218,7 +219,7 @@ path.dirname('/foo/bar/baz/asdf/quux');
 // 返回: '/foo/bar/baz/asdf'
 console.log(__dirname);
 ````
-### vm 核心模块
+#### vm 核心模块
 vm 模块提供了一系列 API 用于在 V8 虚拟机环境中编译和运行代码。
 JavaScript 代码可以被编译并立即运行，或编译、保存然后再运行.
 
@@ -240,10 +241,10 @@ vm.runInThisContext(str);
 
 // runInThisContext fs.readFileSync fs.existsSync path.join resolve extname basename
 ````
-### fs
-### http
-### querystring
-### events
+#### fs
+#### http
+#### querystring
+#### events
 ````javascript
 const EventEmitter = require('events');
 
@@ -255,17 +256,17 @@ myEmitter.on('event', () => {
 });
 myEmitter.emit('event');
 ````
-### util 
+#### util 
 `const util = require('util');`
 
-## 3、第三方模块
+### 3、第三方模块
 需要安装引入
 * express
 * koa
 * [mime](https://www.npmjs.com/package/mime) 模块是一个基于mime-db的MIME类型解析及处理程序。
   
 
-# EventLoop
+## EventLoop
 ---
 
 ````javascript
@@ -346,9 +347,9 @@ fs.readFile('./gitigore',function(){
 });
 ````
 
-# 模块
+## 模块
 ---
-## 介绍
+### 介绍
 - 方便维护 方便管理 代码统一
 - 前端模块 (网络的问题)
 - 模块加载是同步的
@@ -363,7 +364,7 @@ fs.readFile('./gitigore',function(){
 
 - node模块分类 核心模块/内置模块 、 第三方模块 bluebird 、文件模块、自己写的模块  (fs,path);
 
-## 实现common规范
+### 实现common规范
 - 如何导入模块 require  
 - 导出模块  module.exports =  this
 - 如何定义模块1个文件就是一个模块
@@ -521,8 +522,8 @@ console.log(str);
 ````
 ---
 
-# npm发包
-## 实现全局包
+## npm发包
+### 实现全局包
 1、添加bin 
 在package.json文件下添加 指令
 ````
@@ -540,15 +541,15 @@ console.log(process.argv.slice(2));
 
 3、`sudo npm link`
 
-## 发包
+### 发包
 - 切换到官方源
 - npm addUser
 - 填上用户名邮箱 密码 邮箱注意要验证
 - npm publish
 ---
 
-# 发布订阅模式
-## EventEmitter模块实现
+## 发布订阅模式
+### EventEmitter模块实现
 ````javascript
 // 发布订阅  on 订阅 emit 发布
 let EventEmitter = require('events');
@@ -576,7 +577,7 @@ girl.on('失恋了',shopping);
 girl.emit('失恋了');
 
 ````
-## 其他用法 on  once  prependListener
+### 其他用法 on  once  prependListener
 ````javascript
 let EventEmitter = require('./events');
 
@@ -606,8 +607,8 @@ e.emit('失恋'); // 触发完成后就将数组的once绑定的函数移除掉
 // console.log(EventEmitter.defaultMaxListeners)
 ````
 
-## 自己实现
-### 简单版本
+### 自己实现
+#### 简单版本
 ````javascript
 function EventEmitter() {
     this._events = {};
@@ -631,7 +632,7 @@ EventEmitter.prototype.emit = function (eventName) {
 
 module.exports = EventEmitter;
 ````
-### 终极版本
+#### 终极版本
 ````javascript
 function EventEmitter() {
     this._events = {};
