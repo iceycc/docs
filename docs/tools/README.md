@@ -1,4 +1,4 @@
-# 前端开发工具 {docsify-ignore}
+# 前端开发工具
 
 ## 前端IDE
 * webstorm

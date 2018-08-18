@@ -1,4 +1,4 @@
-## ES6目录 {docsify-ignore-all}
+## ES6目录 
 
 ### es6 简介
 - ECMAScript 6.0 ES6 --》 ES2015

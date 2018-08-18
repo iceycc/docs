@@ -1,4 +1,4 @@
-## promise是什么？简单分析promise原理 {docsify-ignore-all}
+## promise是什么？简单分析promise原理 
 ### 预备知识
 * 回调函数
 * 高级函数

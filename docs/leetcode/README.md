@@ -1,4 +1,4 @@
-# leetcode {docsify-ignore-all}
+# leetcode
 
 [leetcode](https://leetcode.com/)
 
