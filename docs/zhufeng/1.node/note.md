@@ -1,12 +1,17 @@
 
-# node超长总结
-## 搭建node开发环境 
+
+# nodeJS超长总结
+#### 持续更新。。。。很多还没写呢
+
 ---
-### 1、先安装一个 nvm
+
+# 搭建node开发环境
+---
+## 1、先安装一个 nvm
 > `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.2/install.sh | bash`
 
-### 2、安装node
-### 3、npm介绍
+## 2、安装node
+## 3、npm介绍
 安装
 - 本地安装
 - 全局安装 (在命令行使用)
@@ -28,12 +33,13 @@ npm uninstall yarn -g
 - 填上用户名邮箱 密码
 - npm publish
 
-## node常见概念
-### 进程和线程
-### 异步和同步
-### 阻塞和非阻塞
-### 队列和栈 （堆）
-### 宏任务微任务
+# node常见概念
+---
+## 进程和线程
+## 异步和同步
+## 阻塞和非阻塞
+## 队列和栈 （堆）
+## 宏任务微任务
 macrotask 和 microtask 表示异步任务的两种分类。在挂起任务时，JS 引擎会将所有任务按照类别分到这两个队列中，首先在 macrotask 的队列（这个队列也被叫做 task queue）中取出第一个任务，执行完毕后取出 microtask 队列中的所有任务顺序执行；之后再取 macrotask 任务，周而复始，直至两个队列的任务都取完。
 
 两个类别的具体分类如下：
@@ -41,11 +47,11 @@ macrotask 和 microtask 表示异步任务的两种分类。在挂起任务时�
 macro-task: script（整体代码）, setTimeout, setInterval, setImmediate, I/O, UI rendering
 micro-task: process.nextTick, Promises（这里指浏览器实现的原生 Promise）,Object.observe, MutationObserver
 
-## node的模块
+# node的模块
 ---
-### 1、全局模块
+## 1、全局模块
 不需要引入 拿来即用 `console.log(global)`得到核心对象
-#### console
+### console
 > node中console.log(this) 指向的是 module.exports, node将`this != global this=module.exports`
 > node中的全局对象是console.log(global) 
 
@@ -78,7 +84,7 @@ Promise.resolve().then(()=>{
 // console.dir(global,{showHidden:true}); // 显示隐藏的信息
 
 ````
-#### process 进程
+### process 进程
   `console.log(process)`得到整个process对象
   
 ```` javascript
@@ -157,13 +163,13 @@ a.add('456');
 // clearImmediate / setImmediate node实现的
 
 ````
-#### _filenane 和 _dirname
+### _filenane 和 _dirname
 不是global上的属性
 _filenane当前执行文件的绝对路径  
 _dirname当前文件所在文件夹的绝对路径
-### 2、核心模块
+## 2、核心模块
 不需要安装，引入即用
-#### path
+### path
 专门用来处理路径 后缀名 路径的信息
 1、path.join([...paths])
 ````javascript  
@@ -223,7 +229,7 @@ path.dirname('/foo/bar/baz/asdf/quux');
 // 返回: '/foo/bar/baz/asdf'
 console.log(__dirname);
 ````
-#### vm 核心模块
+### vm 核心模块
 vm 模块提供了一系列 API 用于在 V8 虚拟机环境中编译和运行代码。
 JavaScript 代码可以被编译并立即运行，或编译、保存然后再运行.
 
@@ -245,10 +251,10 @@ vm.runInThisContext(str);
 
 // runInThisContext fs.readFileSync fs.existsSync path.join resolve extname basename
 ````
-#### fs
-#### http
-#### querystring
-#### events
+### fs
+### http
+### querystring
+### events
 ````javascript
 const EventEmitter = require('events');
 
@@ -260,17 +266,17 @@ myEmitter.on('event', () => {
 });
 myEmitter.emit('event');
 ````
-#### util 
+### util 
 `const util = require('util');`
 
-### 3、第三方模块
+## 3、第三方模块
 需要安装引入
 * express
 * koa
 * [mime](https://www.npmjs.com/package/mime) 模块是一个基于mime-db的MIME类型解析及处理程序。
   
 
-## EventLoop
+# EventLoop
 ---
 
 ````javascript
@@ -351,9 +357,9 @@ fs.readFile('./gitigore',function(){
 });
 ````
 
-## 模块
+# 模块
 ---
-### 介绍
+## 介绍
 - 方便维护 方便管理 代码统一
 - 前端模块 (网络的问题)
 - 模块加载是同步的
@@ -368,7 +374,7 @@ fs.readFile('./gitigore',function(){
 
 - node模块分类 核心模块/内置模块 、 第三方模块 bluebird 、文件模块、自己写的模块  (fs,path);
 
-### 实现common规范
+## 实现common规范
 - 如何导入模块 require  
 - 导出模块  module.exports =  this
 - 如何定义模块1个文件就是一个模块
@@ -381,6 +387,7 @@ console.log(module.paths);
 // 当前目录下找 node_modules，然后逐级网上找，直到找到根目录 node_modules
 ````
 * `exports` 和 `module.exports`
+
 ````javascript
 // a.js 导出
 let a = 1
@@ -406,6 +413,7 @@ node中通过require实现模块加载
 
 
 `console.log(module)` 打印当前模块信息：
+
 ````
 Module {
   id: '.', // 模块id永远为当前模块 入口模块
@@ -425,7 +433,8 @@ Module {
 }
 ````
 多次加载模块只会执行一次 有缓存
-````
+
+````javascript
 // a.js
 let a = 1
 console.log('加载模块a') 
@@ -433,11 +442,10 @@ module.exports = a
 // b.js
 var a = requiue('./a');
 var a = requiue('./a'); // 导入两次只会执行一次
-
-
 ````
 
 自己实现一个requiue加载函数
+
 ````javascript
 let path = require('path');
 let fs = require('fs');
@@ -526,8 +534,8 @@ console.log(str);
 ````
 ---
 
-## npm发包
-### 实现全局包
+# npm发包
+## 实现全局包
 1、添加bin 
 在package.json文件下添加 指令
 ````
@@ -545,15 +553,15 @@ console.log(process.argv.slice(2));
 
 3、`sudo npm link`
 
-### 发包
+## 发包
 - 切换到官方源
 - npm addUser
 - 填上用户名邮箱 密码 邮箱注意要验证
 - npm publish
 ---
 
-## 发布订阅模式
-### EventEmitter模块实现
+# 发布订阅模式
+## EventEmitter模块实现
 ````javascript
 // 发布订阅  on 订阅 emit 发布
 let EventEmitter = require('events');
@@ -581,7 +589,7 @@ girl.on('失恋了',shopping);
 girl.emit('失恋了');
 
 ````
-### 其他用法 on  once  prependListener
+## 其他用法 on  once  prependListener
 ````javascript
 let EventEmitter = require('./events');
 
@@ -611,8 +619,8 @@ e.emit('失恋'); // 触发完成后就将数组的once绑定的函数移除掉
 // console.log(EventEmitter.defaultMaxListeners)
 ````
 
-### 自己实现
-#### 简单版本
+## 自己实现
+### 简单版本
 ````javascript
 function EventEmitter() {
     this._events = {};
@@ -636,7 +644,7 @@ EventEmitter.prototype.emit = function (eventName) {
 
 module.exports = EventEmitter;
 ````
-#### 终极版本
+### 终极版本
 ````javascript
 function EventEmitter() {
     this._events = {};
@@ -705,9 +713,9 @@ EventEmitter.prototype.emit = function (eventName) {
 module.exports = EventEmitter;
 ````
 
-## 编码
+# 编码
 ---
-### 编码基础知识
+## 编码基础知识
 1、字节
 * 计算机内部，所有信息最终都是一个二进制
 * 每个二进制 位 `bit` 有 0 和 1 两种状态，
@@ -721,7 +729,7 @@ module.exports = EventEmitter;
 * 1024G = 1T
 * 1个字节,最大255,一个汉字三个字节
 
-### JavaScript中的进制
+## JavaScript中的进制
 1、进制表示
 ````javascript
 let a = 0b10100;//二进制
@@ -744,7 +752,7 @@ console.log(c.toString(2));
 console.log(parseInt('10100', 2));
 ````
 
-### ASCII
+## ASCII
 最开始计算机只在美国用，八位的字节可以组合出256种不同状态。0-32 种状态规定了特殊用途,一旦终端、打印机遇上约定好的这些字节被传过来时，就要做一些约定的动作如：
 * 遇上 0×10, 终端就换行
 * 遇上 0×07, 终端就向人们嘟嘟叫
@@ -753,7 +761,7 @@ console.log(parseInt('10100', 2));
 这128个符号（包括32个不能打印出来的控制符号），只占用了一个字节的后面7位，最前面的一位统一规定为0  
 > American Standard Code for Information Interchange：美国信息互换标准代码
 
-###  GB2312
+##  GB2312
 后来西欧一些国家用的不是英文，它们的字母在 ASCII 里没有为了可以保存他们的文字，他们使用127号这后的空位来保存新的字母，一直编到了最后一位 255。比如法语中的é的编码为 130。当然了不同国家表示的符号也不一样，比如，130 在法语编码中代表了 `é`,在希伯来语编码中却代表了字母 `Gimel (ג)`。
 > 从128 到 255 这一页的字符集被称为扩展字符集。
 
@@ -764,14 +772,14 @@ console.log(parseInt('10100', 2));
 * 还把数学符号、日文假名和ASCII里原来就有的数字、标点和字母都重新编成两个字长的编码。这就是全角字符，127 以下那些就叫半角字符。
 * 把这种汉字方案叫做 GB2312。GB2312 是对 ASCII 的中文扩展
 
-### GBK
+## GBK
 后来还是不够用，于是干脆不再要求低字节一定是 127 号之后的内码，只要第一个字节是大于 127 就固定表示这是一个汉字的开始,又增加了近 20000 个新的汉字（包括繁体字）和符号。
 
-### GB18030 / DBCS 
+## GB18030 / DBCS 
 又加了几千个新的少数民族的字，GBK扩成了GB18030 通称他们叫做 DBCS `Double Byte Character Set：双字节字符集。`
 在 DBCS 系列标准里，最大的特点是两字节长的汉字字符和一字节长的英文字符并存于同一套编码方案里.各个国家都像中国这样搞出一套自己的编码标准，结果互相之间谁也不懂谁的编码，谁也不支持别人的编码
 
-### Unicode
+## Unicode
 ISO 的国际组织废了所有的地区性编码方案，重新搞一个包括了地球上所有文化、所有字母和符 的编码！ Unicode 当然是一个很大的集合，现在的规模可以容纳100多万个符号。
 * International Organization for Standardization：国际标准化组织。
 * Universal Multiple-Octet Coded Character Set，简称 UCS，俗称 Unicode
@@ -781,7 +789,7 @@ ISO 就直接规定必须用两个字节，也就是 16 位来统一表示所有
 * 字节是一个8位的物理存贮单元，
 * 而字符则是一个文化相关的符号。
 
-### UTF-8
+## UTF-8
 Unicode 在很长一段时间内无法推广，直到互联网的出现，为解决 Unicode 如何在网络上传输的问题，于是面向传输的众多 UTF 标准出现了，
 > Universal Character Set（UCS）Transfer Format：UTF编码
 
@@ -792,7 +800,7 @@ Unicode 在很长一段时间内无法推广，直到互联网的出现，为解
 * Unicode 一个中文字符占 2 个字节，而 UTF-8 一个中文字符占 3 个字节
 * UTF-8 是 Unicode 的实现方式之一
 
-### 编码规则
+## 编码规则
 1. 对于单字节的符号，字节的第一位设为0，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的。
 2. 对于n字节的符号（n > 1），第一个字节的前n位都设为1，第n+ 1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码。
 ````
@@ -821,9 +829,9 @@ let result = transfer(0x4E07);//E4B887
 
 ````
 
-### 文本编码 
+## 文本编码 
 使用NodeJS编写前端工具时，操作得最多的是文本文件，因此也就涉及到了文件编码的处理问题。我们常用的文本编码有UTF8和GBK两种，并且UTF8文件还可能带有BOM。在读取不同编码的文本文件时，需要将文件内容转换为JS使用的UTF8编码字符串后才能正常处理。 
-### 移除BOM头
+## 移除BOM头
 
 BOM用于标记一个文本文件使用Unicode编码，其本身是一个Unicode字符（"\uFEFF"），位于文本文件头部。在不同的Unicode编码下，BOM字符对应的二进制字节如下：
 
@@ -847,7 +855,7 @@ function readText(pathname) {
 }
 ````
 
-### GBK转UTF8 
+## GBK转UTF8 
 NodeJS支持在读取文本文件时，或者在Buffer转换为字符串时指定文本编码，但遗憾的是，GBK编码不在NodeJS自身支持范围内。因此，一般我们借助iconv-lite这个三方包来转换编码。使用NPM下载该包后，我们可以按下边方式编写一个读取GBK文本文件的函数。
 
 ````javascript
@@ -858,13 +866,14 @@ function readGBKText(pathname) {
 }
 ````
 
-## Buffer
-### 什么是Buffer
+# Buffer
+---
+## 什么是Buffer
 * buffer是二进制 (存的是16进制) 表示的是内存
 * fs读取文件 buffer类型
 * buffer可以和字符串相互转化 toString()
 
-### Buffer声明的方式
+## Buffer声明的方式
 ````javascript
 Buffer.alloc(6) // <Buffer 00 00 00 00 00 00>
 Buffer.from([1111,2,3]) // <Buffer 57 02 03>
@@ -879,7 +888,7 @@ r = iconvLite.decode(r,'gbk');
 console.log(r);
 ````
 
-### 常用的方法
+## 常用的方法
 ````javascript
 // 1 indexof
 Buffer.from('珠峰培训峰').indexOf('峰',6) // buf 中 value 首次出现的索引，如果 buf 没包含 value 则返回 -1 
@@ -924,5 +933,440 @@ Buffer.concat = function(bufferArray,len){
 }
 ````
 
+# fs
+---
+## fs模块
+* 在 Node.js 中，使用fs模块来实现所有有关文件及目录的创建、写入及删除操作。
+* 在fs模块中，所有的方法都分为同步和异步两种实现。
+* 具有sync后缀的方法为同步方法，不具有sync后缀的方法为异步方法。
 
+## 读文件 readFile + readFileSync
+* 方法都是 异步没有sync / 同步 Sync
+* 返回值可以获取同步的结果
+* 读取文件默认的结果类型 encoding:null 默认是buffer
+* 如果文件不存在则会报错
+* 读取的时候会把内容整体读取到内存中 读小的文件)，大的文件流操作
+* 异步 error-first
+
+````javascript  
+let fs = require('fs');
+let path = require('path');
+// 同步
+let r = fs.readFileSync(path.join(__dirname,'note.md'),{encoding:'utf8',flag:'r'});
+console.log(r);
+// 异步
+fs.readFile(path.join(__dirname,'note.md'),'utf8',function(err,data){ // 回调中的第一个参数 永远是错误
+    console.log(data);
+});
+console.log(r);
+````
+## 写文件 writeFile + writeFileSync + appendFile
+* 写入时默认文件存在就创建，有文件的话 会被清空
+* 写入时 他会把内容以二进制的形式写入进去
+
+````javascript
+let fs = require('fs');
+// 同步 fs.writeFileSync(file, data[, options])
+fs.writeFileSync('./1.txt',Date.now()+'\n',{flag:'a'});
+// 异步 fs.writeFile(file, data[, options], callback)
+fs.writeFile(path.join(__dirname,'1.txt'),'{data:1}',function(err){
+    console.log('成功')
+});
+// 追加 fs.appendFile(file, data[, options], callback)
+fs.appendFile(path.join(__dirname,'1.txt'),'{data:1}',function(err){
+    console.log('成功')
+});
+````
+
+## 拷贝文件 
+1、直接 读readFile 再写入 writeFile
+````javascript
+// 拷贝方法  不能读一点写一点，想指定位置读取
+fs.readFile(path.join(__dirname,'1.txt'),(err,data)=>{
+    fs.writeFile(path.join(__dirname,'2.txt'),data,(err)=>{
+        console.log('拷贝成功')
+    })
+});
+````
+
+## open
+`fs.open(filename,flags,[mode],callback);`
+> mode:权限 r 4  w 2   x 1  chmod 777 666 0o438
+> `callback:(err,fd)=>{}`  fd:file descriptor 文件描述符(数字类型) ReadStream 使用的整数型文件描述符
+> `process.stdin 0 process.stdout 1 process.stderr 2`
+
+````javascript
+let fs = require('fs');
+let path = require('path');
+//
+fs.open(path.join(__dirname,'1.txt'),'w',(err,fd)=>{
+    // todo
+})
+````
+
+## 写入指定内容 open + write
+
+````javascript
+fs.open(path.join(__dirname,'1.txt'),'w',(err,fd)=>{
+    let buf = Buffer.from('王冰洋');
+    // buf 指的是读取的buffer
+    // 0 从buffer哪个位置读取 
+    // 6 读取多少个buffer往里写
+    // 0 从文件哪个位置写入
+    // bytesWritten实际写入的个数
+    fs.write(fd,buf,0,4,0,(err,bytesWritten)=>{
+        console.log('写入成功')
+    })
+})
+
+````
+
+## 读取指定内容 open + read
+````javascript  
+fs.open(path.join(__dirname,'1.txt'),'r',(err,fd)=>{
+    let buffer = Buffer.alloc(5);
+    /**
+     * fd文件，描述符
+     * buffer 读取到那个buffer中
+     * 0 从buffer哪个地方开始写入
+     * 5 写入多长
+     * 1 从文件的那个位置开始读取
+     * bytesRead实际读取到的个数
+     */
+    fs.read(fd,buffer,0,4,1,(err,bytesRead)=>{
+        console.log(buffer.toString());
+        fs.close(fd,()=>{
+            console.log('关闭')
+        })
+    });
+});
+````
+
+## 拷贝指定位置 open + read + write
+
+````javascript
+let fs = require('fs');
+let path = require('path');
+// 1.txt => 2.txt
+// 1.准备打开 1.txt 和 2.txt
+const BUFFER_SIZE = 5;
+let readPos = 0;
+let writePos = 0;
+// 异步的递归是如何操作的 
+fs.open(path.join(__dirname, '1.txt'), 'r', (err, rfd) => {
+    fs.open(path.join(__dirname, '2.txt'), 'w', (err, wfd) => {
+        // 
+        function next() {
+            let buf = Buffer.alloc(BUFFER_SIZE); // 申请读出来的buffer的长度
+            fs.read(rfd, buf, 0, BUFFER_SIZE, null, (err, byteRead) => {
+                if (byteRead > 0) {
+                    // 写入读取到的个数 可能想读10个 但是只有5个
+                    readPos += byteRead
+                    fs.write(wfd, buf, 0, byteRead, null, (err, byteWritten) => {
+                        writePos += byteWritten;
+                        next();
+                    });
+                }else{
+                    fs.close(rfd,()=>{ });
+                    // 读取完毕 不一定表示写入完毕 
+                    fs.fsync(wfd,()=>{
+                        fs.close(wfd,()=>{})
+                    });
+                }
+            })
+        }
+        // 
+        next();
+    });
+});
+
+
+````
+
+## 目录操作 
+
+### 创建目录
+> fs.mkdir(path[, mode], callback)
+> 要求父目录必须存在
+
+* 判断一个文件是否有权限访问
+> fs.access(path[, mode], callback)
+> 
+````javascript
+fs.access('/etc/passwd', fs.constants.R_OK | fs.constants.W_OK, (err) => {
+  console.log(err ? 'no access!' : 'can read/write');
+});
+````
+* 广度优先遍历
+
+异步创建多级目录 async + await
+````javascript
+let fs = require('fs');
+let util = require('util');
+let access = util.promisify(fs.access); // promisify将改io操作promise化
+let mkdir = util.promisify(fs.mkdir);
+async function makep(p) {
+    let paths = p.split('/');
+    for (let i = 0; i < paths.length; i++) {
+        let dirPath = paths.slice(0, i + 1).join('/');
+        try{
+            await access(dirPath)
+        }catch(e){
+            await mkdir(dirPath);
+        }
+    }
+}
+makep('a/b/c/d/e').then(data => {
+    console.log('创建成果')
+})
+````
+
+同步创建多级目录  
+````javascript  
+function makep(p) {  // 同步创建目录
+    let paths = p.split('/');
+    for (let i = 0; i < paths.length; i++) {
+        let dirPath = paths.slice(0,i+1).join('/');
+        try{
+            // 如果能访问到 不干任何事 ，访问不到才创建
+            fs.accessSync(dirPath);
+        }catch(e){
+            fs.mkdirSync(dirPath);
+        }
+    }
+}
+makep('a/b/c/d/e');
+````  
+
+递归创建多级目录 异步
+````javascript
+function makep(p,fn){
+    let paths = p.split('/');
+    let index = 0;
+    function next(){
+        if(index ===paths.length ) return fn();
+        let realPath = paths.slice(0,++index).join('/');
+        // 如果文件无法访问到 那就说明文件不存在则创建 反过来如果文件 存在就创建一下个
+        fs.access(realPath,(err)=>{
+            if(err){
+                fs.mkdir(realPath,(err)=>{
+                    next();
+                });
+            }else{
+                next();
+            }
+        })
+    }
+    next();
+}
+makep('e/d/e/g/s/q',()=>{
+    console.log('ok')
+})
+````
+
+### 删除目录
+
+### 删除文件
+`fs.unlink(path, callback)`
+
+### 查看文件目录信息
+`fs.stat(path, callback)`
+> stats.isFile()
+stats.isDirectory()
+atime(Access Time)上次被读取的时间。
+ctime(State Change Time)：属性或内容上次被修改的时间。
+mtime(Modified time)：档案的内容上次被修改的时间。
+
+###  移动文件或目录
+`fs.rename(oldPath, newPath, callback)`
+
+### 读取目录下所有文件
+`fs.readdir(path[, options], callback)`
+
+### 截断文件
+`fs.ftruncate(fd[, len], callback)`
+
+````javascript
+const fd = fs.openSync('temp.txt', 'r+');
+// 截断文件至前4个字节
+fs.ftruncate(fd, 4, (err) => {
+  console.log(fs.readFileSync('temp.txt', 'utf8'));
+});
+````
+
+### 删除非空目录
+`rmdirSync` `rmdir` `unlink`
+
+#### 简单实现
+````javascript
+// 如果删除一个文件夹 先读取出 文件夹的内容fs.readdir
+// 判断当前这个路径是文件夹还是文件，文件的状态 fs.stat
+// statObj.isDirectory  statObj.isFile
+// fs.rmdir 删除目录    fs.unlink 删除文件
+let fs  =require('fs');
+let path = require('path');
+fs.readdir('a',function (err,files) {
+  let paths = files.map(dir => path.join('a', dir))
+  console.log(paths);
+  paths.forEach(p=>{
+    fs.stat(p,(err,statObj)=>{
+      if (statObj.isDirectory()){
+        fs.rmdir(p)
+      }else{
+        fs.unlink(p)
+      }
+    });
+  });
+});
+````
+
+#### 先序广度遍历
+````javascript  
+let fs  =require('fs');
+let path = require('path');
+// 先序广度遍历
+function rmdirSync(dir){
+    let arr = [dir]; // 创建一个记录表
+    let index = 0 ; // 从记录表里拿出第一项 a
+    let current; // a
+    while(current = arr[index++]){
+        let dirsPath = fs.readdirSync(current); // [b,c]
+        dirsPath = dirsPath.map(item=> path.join(current,item)); // => [a/b,a/c]
+        arr = [...arr,...dirsPath] // => [a,a/b,a/c]
+    };
+    for(let i =arr.length-1;i>=0;i--){
+        fs.rmdirSync(arr[i]);
+    }
+}
+rmdirSync('a');
+// 用传统的回调 fs.readdir  fs.rmdir 实现广度删除
+````
+#### Promise版
+````javascript
+// 1、异步primise 深度优先 删除
+let {promisify} = require('util'); // async - > await
+let fs = require('mz/fs');
+async function removePromise(dir) {
+    let statObj = await fs.stat(dir);
+    if (statObj.isDirectory()) {
+      let files = await fs.readdir(dir);
+      files = files.map(file => removePromise(path.join(dir, file)));
+      await Promise.all(files); // 删除儿子
+      await fs.rmdir(dir);// 删除自己
+    } else {
+      await fs.unlink(dir);
+    }
+}
+removePromise('a').then(()=>{
+  console.log('删除成功');
+},err=>{
+  console.log(err);
+})
+// 2、版本2
+function removePromise(dir) {
+    return new Promise((resolve,reject)=>{
+      fs.stat(dir,(err,statObj)=>{
+        if(statObj.isDirectory()){
+          fs.readdir(dir,(err,files)=>{
+            files = files.map(file=>path.join(dir,file));
+            // [a/b,a/c,a/1.js]
+            // 等待儿子删除后 删除自己
+            Promise.all(files.map(file =>removePromise(file))).then(()=>{
+              fs.rmdir(dir,resolve);
+            });
+          })
+        }else{
+          // 文件删除后 成功即可
+          fs.unlink(dir,resolve);
+        }
+      })
+    });
+}
+removePromise('a').then(()=>{
+  console.log('删除ok');
+})
+````
+
+#### 并行
+````javascript
+function removeDir(dir, cb) {
+    fs.stat(dir,(err,statObj)=>{
+      if (statObj.isDirectory()){
+        fs.readdir(dir,(err,files)=>{
+          let paths = files.map(file=>path.join(dir,file));
+          // 获取每一个路径
+          if(paths.length>0){
+            let i = 0;
+            function done() { // Promise.all 等待异步都执行完后 再执行之后的操作 
+              i++;
+              if(i === paths.length){
+                removeDir(dir, cb);
+              }
+            }
+            paths.forEach(p => {
+              // 删除某个后通知下 当删除的子目录个数 等于我们的子目录数，删除父级即可
+              removeDir(p,done);
+            })
+          }else{
+            fs.rmdir(dir,cb); // 当前目录下没东西直接删除即可
+          }
+        })
+      }else{
+        fs.unlink(dir,cb);
+      }
+    })
+}
+
+````
+
+#### 异步深度优先 （串行 series paralle）
+````javascript
+function removeDir(dir,cb) { 
+    fs.stat(dir,(err,statObj)=>{
+      if (statObj.isDirectory()){
+        fs.readdir(dir,(err,files)=>{
+          let paths = files.map(file=>path.join(dir,file));
+          function next(index) {
+            // 第一次取出的是a/1.js
+            if (index === paths.length) return fs.rmdir(dir,cb);
+            let currentPath = paths[index];
+            // 文件删除后继续拿出下一项 继续删除
+            // 串行删除，删除完第一个，第一个删除完后调用第二个删除的方法
+            removeDir(currentPath,()=>next(index+1));
+          }
+          next(0);
+        })
+      }else{
+        fs.unlink(dir,cb);
+      }
+    })
+}
+removeDir('a',()=>{
+  console.log('删除成功');
+});
+````
+
+#### 深度 有儿子就深入进去
+````javascript
+function removeDirSync(dir) {
+  let stateObj = fs.statSync(dir);
+  if(stateObj.isDirectory()){
+    // 是目录继续读取
+    let dirs = fs.readdirSync(dir);
+    dirs.forEach(d=>{
+      let p = path.join(dir,d);
+      removeDirSync(p);
+    });
+    // 儿子删除完成后继续删除自己
+    fs.rmdirSync(dir);
+  }else{
+    fs.unlinkSync(dir);
+  }
+}
+removeDirSync('a');
+````
+
+# 流
+---
+### todo
 

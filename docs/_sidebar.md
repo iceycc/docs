@@ -6,8 +6,8 @@
     * [简单整理JavaScript的Event Loop](/post/EventLoop)
   
 * 前端构架成长之路
-    * [前端构架成长之路](/zhufeng/)
-    * [node超长总结](/zhufeng/1.node/note)
+    * [前端构架之旅](/zhufeng/)
+    * [node超长总结（持续更新）](/zhufeng/1.node/note)
   
 * 面试整理
   
