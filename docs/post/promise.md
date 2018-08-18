@@ -1,27 +1,28 @@
-## promise是什么？简单分析promise原理 
-### 预备知识
+# promise是什么？简单分析promise原理 
+## 预备知识
 * 回调函数
 * 高级函数
 * 发布-订阅模式
 * promise A+ 规范
   
-### promise是什么，能干什么
+## promise是什么，能干什么
 Promise是异步编程的一种解决方案，它可以解决异步回调地狱的问题，防止层层嵌套对程序代码带来的难维护性。既然带来了方便，我们就有必要学习它的原理以及底层实现，所以笔者就按照PromiseA+规范写了一个简单的Promise，并实现了Promise.all()，Promise.race()等API
 
 * 解决回调地狱
 * 解决多个回调函数同步结果
 
-### promise的几个方法
+## promise的几个方法
 * promise.all()
 * promise.race()
 * promise.resolve()
 * promise.reject()
-### promise的三种状态
+  
+## promise的三种状态
 * 等待态 pending
 * 成功态 resolved
 * 失败态 rejected
 
-### promise的特点
+## promise的特点
 * 1.executor 默认时new的时候就自动执行
 * 2.每个promise的实例 都有then方法 
 * 3.then方法中有两个参数 分别是成功的回调和失败的回调
@@ -39,11 +40,13 @@ Promise是异步编程的一种解决方案，它可以解决异步回调地狱�
 * 6.then中可以不写东西，相当于白写 （值的穿透）
 
 
-### promise A+ 规范
+## promise A+ 规范
+
 * [原文](https://promisesaplus.com/)
 * [翻译](http://www.ituring.com.cn/article/66566)
 * 校验插件 `npm install promises-aplus-tests -g` 用于检查自己写的promise是否符合promise规范
-### 简单实现 待完善
+  
+## 简单实现 待完善
 
 ````javascript
     function Promise(executor){
@@ -95,7 +98,7 @@ Promise.prototype.then = function(onFulfilled,onRejected){
 module.exports = Promise;
 ````
 
-### 基本实现
+## 基本实现
 ```` javascript 
 function Promise(executor) {
     let self = this;
@@ -240,7 +243,7 @@ Promise.defer = Promise.deferred = function(){
 module.exports = Promise;
 ````
 
-### 最终版本
+## 最终版本
 ````javascript  
 function Promise(executor) {
     let self = this;

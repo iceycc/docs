@@ -1,15 +1,15 @@
-## 大课程纲：{docsify-ignore-all}
+## 前端构架成长之路（来自于珠峰构架课程大纲）
 ### 一、珠峰高级全栈架构课基础部分
 - [x] 公开-异步发展流程promise原理
-- [ ] 1.ES6/ES7语法和原理实现
-- [ ] 2.异步发展过程：callback、promise、generator、co、async/await等异步流程控制(async和await的实现原理)
-- [ ] 3.JavaScript模块化发展的演进历史 CommonJS、AMD、CMD、ES6模块的演进历史
-- [ ] 4.promise设计模式原理及在es6中的应用，手写一个符合promise A+规范的promise实现
-- [ ] 5.Nodes核心原理，手写Stream的源码
-- [ ] 6.Node事件原理和发布定阅设计模式
+- [x] 1.ES6/ES7语法和原理实现
+- [x] 2.异步发展过程：callback、promise、generator、co、async/await等异步流程控制(async和await的实现原理)
+- [x] 3.JavaScript模块化发展的演进历史 CommonJS、AMD、CMD、ES6模块的演进历史
+- [x] 4.promise设计模式原理及在es6中的应用，手写一个符合promise A+规范的promise实现
+- [x] 5.Nodes核心原理，手写Stream的源码
+- [x] 6.Node事件原理和发布定阅设计模式
 - [ ] 7.文件系统遍历算法(同步、异步、深度、广度、先序、中序、后序)
 - [ ] 8.用TCP实现HTTP和Websocket协议
-- [ ] 9.手写一款HTTP服务命令行工具，包括压缩、缓存、断点续传、文件上传等功
+- [x] 9.手写一款HTTP服务命令行工具，包括压缩、缓存、断点续传、文件上传等功
 - [ ] 10.Cookie和Session原理
 
 ### 二、前端工程化构建工具
