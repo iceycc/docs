@@ -1,18 +1,19 @@
 
 
-# nodeJS超长总结
-## 🐱 🐶 🐭 🐘 🐳 ✈️ 🚄 🚗 ⚽️ 💆 🥚 🧒 🌹 🐯 ➡️ 🐱 🐶 🐭 🐘 🐳 ✈️ 🚄 🚗 ⚽️ 💆 🥚 🧒 🌹 🐯 ➡️
+# 🌹 nodeJS超长总结
+## 🌹🌹 🐱 🐶 🐭 🐘 🐳 ✈️ 🚄 🚗 ⚽️ 💆 🥚 🧒 🌹 🐯 ➡️ 🐱 🐶 🐭 🐘 🐳 ✈️ 🚄 🚗 ⚽️ 💆 🥚 🧒 🌹 🐯 ➡️
 持续更新。。。。很多还没写呢
 
 ---
 
-# 搭建node开发环境
+# 🌹 搭建node开发环境
 ---
-## 1、先安装一个 nvm
+## 🌹🌹 1、先安装一个 nvm
 > `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.2/install.sh | bash`
 
-## 2、安装node
-## 3、npm介绍
+## 🌹🌹 2、安装node
+easy todo
+## 🌹🌹 3、npm介绍
 安装
 - 本地安装
 - 全局安装 (在命令行使用)
@@ -34,13 +35,17 @@ npm uninstall yarn -g
 - 填上用户名邮箱 密码
 - npm publish
 
-# node常见概念
+# 🌹 node常见概念
 ---
-## 进程和线程
-## 异步和同步
-## 阻塞和非阻塞
-## 队列和栈 （堆）
-## 宏任务微任务
+## 🌹🌹 进程和线程
+todo
+## 🌹🌹 异步和同步
+todo
+## 🌹🌹 阻塞和非阻塞
+todo
+## 🌹🌹 队列和栈 （堆）
+todo
+## 🌹🌹 宏任务微任务
 macrotask 和 microtask 表示异步任务的两种分类。在挂起任务时，JS 引擎会将所有任务按照类别分到这两个队列中，首先在 macrotask 的队列（这个队列也被叫做 task queue）中取出第一个任务，执行完毕后取出 microtask 队列中的所有任务顺序执行；之后再取 macrotask 任务，周而复始，直至两个队列的任务都取完。
 
 两个类别的具体分类如下：
@@ -48,11 +53,11 @@ macrotask 和 microtask 表示异步任务的两种分类。在挂起任务时�
 macro-task: script（整体代码）, setTimeout, setInterval, setImmediate, I/O, UI rendering
 micro-task: process.nextTick, Promises（这里指浏览器实现的原生 Promise）,Object.observe, MutationObserver
 
-# node的模块
+# 🌹 node的模块
 ---
-## 1、全局模块
+## 🌹🌹 1、全局模块
 不需要引入 拿来即用 `console.log(global)`得到核心对象
-### console
+### 🌹🌹🌹 console
 > node中console.log(this) 指向的是 module.exports, node将`this != global this=module.exports`
 > node中的全局对象是console.log(global) 
 
@@ -85,7 +90,7 @@ Promise.resolve().then(()=>{
 // console.dir(global,{showHidden:true}); // 显示隐藏的信息
 
 ````
-### process 进程
+### 🌹🌹🌹 process 进程
   `console.log(process)`得到整个process对象
   
 ```` javascript
@@ -164,13 +169,13 @@ a.add('456');
 // clearImmediate / setImmediate node实现的
 
 ````
-### _filenane 和 _dirname
+### 🌹🌹🌹 _filenane 和 _dirname
 不是global上的属性
 _filenane当前执行文件的绝对路径  
 _dirname当前文件所在文件夹的绝对路径
-## 2、核心模块
+## 🌹🌹 2、核心模块
 不需要安装，引入即用
-### path
+### 🌹🌹🌹 path
 专门用来处理路径 后缀名 路径的信息
 1、path.join([...paths])
 ````javascript  
@@ -230,7 +235,7 @@ path.dirname('/foo/bar/baz/asdf/quux');
 // 返回: '/foo/bar/baz/asdf'
 console.log(__dirname);
 ````
-### vm 核心模块
+### 🌹🌹🌹 vm 核心模块
 vm 模块提供了一系列 API 用于在 V8 虚拟机环境中编译和运行代码。
 JavaScript 代码可以被编译并立即运行，或编译、保存然后再运行.
 
@@ -252,10 +257,10 @@ vm.runInThisContext(str);
 
 // runInThisContext fs.readFileSync fs.existsSync path.join resolve extname basename
 ````
-### fs
-### http
-### querystring
-### events
+### 🌹🌹🌹 fs
+### 🌹🌹🌹 http
+### 🌹🌹🌹 querystring
+### 🌹🌹🌹 events
 ````javascript
 const EventEmitter = require('events');
 
@@ -267,17 +272,17 @@ myEmitter.on('event', () => {
 });
 myEmitter.emit('event');
 ````
-### util 
+### 🌹🌹🌹 util 
 `const util = require('util');`
 
-## 3、第三方模块
+## 🌹🌹 3、第三方模块
 需要安装引入
 * express
 * koa
 * [mime](https://www.npmjs.com/package/mime) 模块是一个基于mime-db的MIME类型解析及处理程序。
   
 
-# EventLoop
+# 🌹 EventLoop
 ---
 
 ````javascript
@@ -358,9 +363,9 @@ fs.readFile('./gitigore',function(){
 });
 ````
 
-# 模块
+# 🌹 模块
 ---
-## 介绍
+## 🌹🌹 介绍
 - 方便维护 方便管理 代码统一
 - 前端模块 (网络的问题)
 - 模块加载是同步的
@@ -375,7 +380,7 @@ fs.readFile('./gitigore',function(){
 
 - node模块分类 核心模块/内置模块 、 第三方模块 bluebird 、文件模块、自己写的模块  (fs,path);
 
-## 实现common规范
+## 🌹🌹 实现common规范
 - 如何导入模块 require  
 - 导出模块  module.exports =  this
 - 如何定义模块1个文件就是一个模块
@@ -535,8 +540,8 @@ console.log(str);
 ````
 ---
 
-# npm发包
-## 实现全局包
+# 🌹 npm发包
+## 🌹🌹 实现全局包
 1、添加bin 
 在package.json文件下添加 指令
 ````
@@ -554,15 +559,15 @@ console.log(process.argv.slice(2));
 
 3、`sudo npm link`
 
-## 发包
+## 🌹🌹 发包
 - 切换到官方源
 - npm addUser
 - 填上用户名邮箱 密码 邮箱注意要验证
 - npm publish
 ---
 
-# 发布订阅模式
-## EventEmitter模块实现
+# 🌹 发布订阅模式
+## 🌹🌹 EventEmitter模块实现
 ````javascript
 // 发布订阅  on 订阅 emit 发布
 let EventEmitter = require('events');
@@ -590,7 +595,7 @@ girl.on('失恋了',shopping);
 girl.emit('失恋了');
 
 ````
-## 其他用法 on  once  prependListener
+## 🌹🌹 其他用法 on  once  prependListener
 ````javascript
 let EventEmitter = require('./events');
 
@@ -620,8 +625,8 @@ e.emit('失恋'); // 触发完成后就将数组的once绑定的函数移除掉
 // console.log(EventEmitter.defaultMaxListeners)
 ````
 
-## 自己实现
-### 简单版本
+## 🌹🌹 自己实现
+### 🌹🌹🌹 简单版本
 ````javascript
 function EventEmitter() {
     this._events = {};
@@ -645,7 +650,7 @@ EventEmitter.prototype.emit = function (eventName) {
 
 module.exports = EventEmitter;
 ````
-### 终极版本
+### 🌹🌹🌹 终极版本
 ````javascript
 function EventEmitter() {
     this._events = {};
@@ -714,9 +719,9 @@ EventEmitter.prototype.emit = function (eventName) {
 module.exports = EventEmitter;
 ````
 
-# 编码
+# 🌹 编码
 ---
-## 编码基础知识
+## 🌹🌹 编码基础知识
 1、字节
 * 计算机内部，所有信息最终都是一个二进制
 * 每个二进制 位 `bit` 有 0 和 1 两种状态，
@@ -730,7 +735,7 @@ module.exports = EventEmitter;
 * 1024G = 1T
 * 1个字节,最大255,一个汉字三个字节
 
-## JavaScript中的进制
+## 🌹🌹 JavaScript中的进制
 1、进制表示
 ````javascript
 let a = 0b10100;//二进制
@@ -753,7 +758,7 @@ console.log(c.toString(2));
 console.log(parseInt('10100', 2));
 ````
 
-## ASCII
+## 🌹🌹 ASCII
 最开始计算机只在美国用，八位的字节可以组合出256种不同状态。0-32 种状态规定了特殊用途,一旦终端、打印机遇上约定好的这些字节被传过来时，就要做一些约定的动作如：
 * 遇上 0×10, 终端就换行
 * 遇上 0×07, 终端就向人们嘟嘟叫
@@ -762,7 +767,7 @@ console.log(parseInt('10100', 2));
 这128个符号（包括32个不能打印出来的控制符号），只占用了一个字节的后面7位，最前面的一位统一规定为0  
 > American Standard Code for Information Interchange：美国信息互换标准代码
 
-##  GB2312
+## 🌹🌹  GB2312
 后来西欧一些国家用的不是英文，它们的字母在 ASCII 里没有为了可以保存他们的文字，他们使用127号这后的空位来保存新的字母，一直编到了最后一位 255。比如法语中的é的编码为 130。当然了不同国家表示的符号也不一样，比如，130 在法语编码中代表了 `é`,在希伯来语编码中却代表了字母 `Gimel (ג)`。
 > 从128 到 255 这一页的字符集被称为扩展字符集。
 
@@ -773,14 +778,14 @@ console.log(parseInt('10100', 2));
 * 还把数学符号、日文假名和ASCII里原来就有的数字、标点和字母都重新编成两个字长的编码。这就是全角字符，127 以下那些就叫半角字符。
 * 把这种汉字方案叫做 GB2312。GB2312 是对 ASCII 的中文扩展
 
-## GBK
+## 🌹🌹 GBK
 后来还是不够用，于是干脆不再要求低字节一定是 127 号之后的内码，只要第一个字节是大于 127 就固定表示这是一个汉字的开始,又增加了近 20000 个新的汉字（包括繁体字）和符号。
 
-## GB18030 / DBCS 
+## 🌹🌹 GB18030 / DBCS 
 又加了几千个新的少数民族的字，GBK扩成了GB18030 通称他们叫做 DBCS `Double Byte Character Set：双字节字符集。`
 在 DBCS 系列标准里，最大的特点是两字节长的汉字字符和一字节长的英文字符并存于同一套编码方案里.各个国家都像中国这样搞出一套自己的编码标准，结果互相之间谁也不懂谁的编码，谁也不支持别人的编码
 
-## Unicode
+## 🌹🌹 Unicode
 ISO 的国际组织废了所有的地区性编码方案，重新搞一个包括了地球上所有文化、所有字母和符 的编码！ Unicode 当然是一个很大的集合，现在的规模可以容纳100多万个符号。
 * International Organization for Standardization：国际标准化组织。
 * Universal Multiple-Octet Coded Character Set，简称 UCS，俗称 Unicode
@@ -790,7 +795,7 @@ ISO 就直接规定必须用两个字节，也就是 16 位来统一表示所有
 * 字节是一个8位的物理存贮单元，
 * 而字符则是一个文化相关的符号。
 
-## UTF-8
+## 🌹🌹 UTF-8
 Unicode 在很长一段时间内无法推广，直到互联网的出现，为解决 Unicode 如何在网络上传输的问题，于是面向传输的众多 UTF 标准出现了，
 > Universal Character Set（UCS）Transfer Format：UTF编码
 
@@ -801,7 +806,7 @@ Unicode 在很长一段时间内无法推广，直到互联网的出现，为解
 * Unicode 一个中文字符占 2 个字节，而 UTF-8 一个中文字符占 3 个字节
 * UTF-8 是 Unicode 的实现方式之一
 
-## 编码规则
+## 🌹🌹 编码规则
 1. 对于单字节的符号，字节的第一位设为0，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的。
 2. 对于n字节的符号（n > 1），第一个字节的前n位都设为1，第n+ 1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码。
 ````
@@ -830,9 +835,9 @@ let result = transfer(0x4E07);//E4B887
 
 ````
 
-## 文本编码 
+## 🌹🌹 文本编码 
 使用NodeJS编写前端工具时，操作得最多的是文本文件，因此也就涉及到了文件编码的处理问题。我们常用的文本编码有UTF8和GBK两种，并且UTF8文件还可能带有BOM。在读取不同编码的文本文件时，需要将文件内容转换为JS使用的UTF8编码字符串后才能正常处理。 
-## 移除BOM头
+## 🌹🌹 移除BOM头
 
 BOM用于标记一个文本文件使用Unicode编码，其本身是一个Unicode字符（"\uFEFF"），位于文本文件头部。在不同的Unicode编码下，BOM字符对应的二进制字节如下：
 
@@ -856,7 +861,7 @@ function readText(pathname) {
 }
 ````
 
-## GBK转UTF8 
+## 🌹🌹 GBK转UTF8 
 NodeJS支持在读取文本文件时，或者在Buffer转换为字符串时指定文本编码，但遗憾的是，GBK编码不在NodeJS自身支持范围内。因此，一般我们借助iconv-lite这个三方包来转换编码。使用NPM下载该包后，我们可以按下边方式编写一个读取GBK文本文件的函数。
 
 ````javascript
@@ -867,19 +872,37 @@ function readGBKText(pathname) {
 }
 ````
 
-# Buffer
+# 🌹 Buffer
 ---
-## 什么是Buffer
+## 🌹🌹 什么是Buffer
+* 缓冲区Buffer是暂时存放输入输出数据的一段内存。
+* JS语言没有二进制数据类型，而在处理TCP和文件流的时候，必须要处理二进制数据。
+* NodeJS提供了一个Buffer对象来提供对二进制数据的操作
+* 是一个表示固定内存分配的全局对象，也就是说要放到缓存区中的字节数需要提前确定
+* Buffer好比由一个8位字节元素组成的数组，可以有效的在JavasScript中表示二进制数据
 * buffer是二进制 (存的是16进制) 表示的是内存
 * fs读取文件 buffer类型
-* buffer可以和字符串相互转化 toString()
 
-## Buffer声明的方式
+## 🌹🌹 Buffer声明的方式
+### 1 通过长度定义buffer
 ````javascript
-Buffer.alloc(6) // <Buffer 00 00 00 00 00 00>
-Buffer.from([1111,2,3]) // <Buffer 57 02 03>
-Buffer.from('王冰洋') // <Buffer e7 8e 8b e5 86 b0 e6 b4 8b>
+// 创建一个长度为 10、且用 0 填充的 Buffer。
+const buf1 = Buffer.alloc(10);
+// 创建一个长度为 10、且用 0x1 填充的 Buffer。
+const buf2 = Buffer.alloc(10, 1);
+// 创建一个长度为 10、且未初始化的 Buffer。
+const buf3 = Buffer.allocUnsafe(10);
 ````
+### 2 通过数组定义buffer
+````javascript
+// 创建一个包含 [0x1, 0x2, 0x3] 的 Buffer。
+const buf4 = Buffer.from([1, 2, 3]);
+````
+### 3 字符串创建buffer
+````javascript
+const buf5 = Buffer.from('王冰洋');
+````
+
 默认情况下 Buffer不支持 gbk编码;gbk -> utf8  iconv-lite可以处理乱码
 ````javascript
 let fs = require('fs');
@@ -889,25 +912,77 @@ r = iconvLite.decode(r,'gbk');
 console.log(r);
 ````
 
-## 常用的方法
-````javascript
-// 1 indexof
-Buffer.from('珠峰培训峰').indexOf('峰',6) // buf 中 value 首次出现的索引，如果 buf 没包含 value 则返回 -1 
-// 2 截取buffer 可以使用slice方法
-// 3 拷贝
-let buffer = Buffer.alloc(12);// [1,1,1,]
-let buf1 = Buffer.from('王');
-let buf2 = Buffer.from('冰洋');
-buf1.copy(buffer,0);
-buf2.copy(buffer,3,3,6);
-console.log(buffer.toString());
-// 4 连结 contact 返回一个合并了 list 中所有 Buffer 实例的新建的 Buffer 
-let buf1 = Buffer.from('王);
-let buf2 = Buffer.from('冰洋');
-let newBuffer = Buffer.concat([buf1,buf2,buf1]);
-console.log(newBuffer.toString());
+## 🌹🌹 常用的方法
+### 1 buf.fill(value[, offset[, end]][, encoding]) 
+手动初始化,擦干净桌子,将buffer内容清0
+````javscript
+buffer.fill(0);
 ````
-自己实现一些
+### 2 write方法 
+`buf.write(string[, offset[, length]][, encoding])`
+````javscript
+buffer.write('冰',0,3,'utf8');
+buffer.write('洋',3,3,'utf8'); // 冰洋
+````
+### 3 writeInt8
+````javscript
+var buf = new Buffer(4);
+buf.writeInt8(0,0);
+buf.writeInt8(16,1);
+buf.writeInt8(32,2);
+buf.writeInt8(48,3);//16*3*/
+console.log(buf);
+console.log(buf.readInt8(0));
+console.log(buf.readInt8(1));
+console.log(buf.readInt8(2));
+console.log(buf.readInt8(3));
+````
+### 4 Little-Endian&Big-Endian
+不同的CPU有不同的字节序类型，这些字节序是指整数在内存中保存的顺序。
+* Big-endian：将高序字节存储在起始地址（高位编址）
+* Little-endian：将低序字节存储在起始地址（低位编址）
+
+````javscript
+let buf3 = new Buffer(4);
+buf3.writeInt16BE(2**8,0);
+console.log(buf3);//<Buffer 01 00 00 00>
+console.log(buf3.readInt16BE(0));
+
+buf3.writeInt16LE(2**8,2);
+console.log(buf3);//<Buffer 01 00 00 01>
+console.log(buf3.readInt16LE(2));
+````
+### 5 toString()
+`buf.toString([encoding[, start[, end]]])`
+````javscript
+let buf4 = new Buffer(6);
+buf4.toString('utf8',3,6)
+````
+### 6 slice()
+`buf.slice([start[,end]])`
+````javscript
+let newBuf = buffer.slice(0,4);
+````
+### 7 截取乱码问题
+````javascript
+let {StringDecoder}  = require('string_decoder');
+let sd = new StringDecoder();
+let buffer = new Buffer('冰洋');
+console.log(sd.write(buffer.slice(0,4)));
+console.log(sd.write(buffer.slice(4)));
+````
+### 7 copy方法
+复制Buffer 把多个buffer拷贝到一个大buffer上
+`buf.copy(target[, targetStart[, sourceStart[, sourceEnd]]])`
+
+````javascript
+let buf5 = Buffer.from('王冰洋啊');
+let buf6 = Buffer.alloc(6);
+buf5.copy(buf6,0,0,4);
+buf5.copy(buf6,3,3,6);
+//buf6=王冰
+````
+自己实现 copy
 ````javascript
 // copy 拷贝
 Buffer.prototype.copy = function(targetBuffer,targetStart,sourceStart,SourceEnd){
@@ -918,6 +993,18 @@ Buffer.prototype.copy = function(targetBuffer,targetStart,sourceStart,SourceEnd)
         targetBuffer[targetStart++] = this[i];
     }
 }
+````
+### 7 concat方法
+`Buffer.concat(list[, totalLength])`
+
+````javascript
+let buf1 = Buffer.from('王);
+let buf2 = Buffer.from('冰洋');
+let newBuffer = Buffer.concat([buf1,buf2,buf1]);
+console.log(newBuffer.toString());
+````
+自己实现 concat
+````javascript
 // concat 连接
 Buffer.concat = function(bufferArray,len){
     len =typeof len === 'undefined'?bufferArray.reduce((prev,next,current)=>prev+next.length,0)  : len;
@@ -934,14 +1021,34 @@ Buffer.concat = function(bufferArray,len){
 }
 ````
 
-# fs
+🌰 indexof
+````javascript
+// 2 indexof
+Buffer.from('冰洋洋冰火').indexOf('洋',6) // buf 中 value 首次出现的索引，如果 buf 没包含 value 则返回 -1 
+````
+## 🌹🌹 base64 
+* Base64是网络上最常见的用于传输8Bit字节码的编码方式之一，Base64就是一种基于64个可打印字符来表示二进制数据的方法。
+* Base64要求把每三个8Bit的字节转换为四个6Bit的字节（38 = 46 = 24），然后把6Bit再添两位高位0，组成四个8Bit的字节，也就是说，转换后的字符串理论上将要比原来的长1/3
+````javascirpt
+const CHARTS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+function transfer(str){
+  let buf = Buffer.from(str);
+  let result = '';
+  for(let b of buf){
+      result += b.toString(2);
+  }
+    return result.match(/(\d{6})/g).map(val=>parseInt(val,2)).map(val=>CHARTS[val]).join('');
+}
+let r = transfer('珠');//54+g
+````
+# 🌹 fs
 ---
-## fs模块
+## 🌹🌹 fs模块
 * 在 Node.js 中，使用fs模块来实现所有有关文件及目录的创建、写入及删除操作。
 * 在fs模块中，所有的方法都分为同步和异步两种实现。
 * 具有sync后缀的方法为同步方法，不具有sync后缀的方法为异步方法。
 
-## 读文件 readFile + readFileSync
+## 🌹🌹 读文件 readFile + readFileSync
 * 方法都是 异步没有sync / 同步 Sync
 * 返回值可以获取同步的结果
 * 读取文件默认的结果类型 encoding:null 默认是buffer
@@ -961,7 +1068,7 @@ fs.readFile(path.join(__dirname,'note.md'),'utf8',function(err,data){ // 回调�
 });
 console.log(r);
 ````
-## 写文件 writeFile + writeFileSync + appendFile
+## 🌹🌹 写文件 writeFile + writeFileSync + appendFile
 * 写入时默认文件存在就创建，有文件的话 会被清空
 * 写入时 他会把内容以二进制的形式写入进去
 
@@ -979,7 +1086,7 @@ fs.appendFile(path.join(__dirname,'1.txt'),'{data:1}',function(err){
 });
 ````
 
-## 拷贝文件 
+## 🌹🌹 拷贝文件 
 1、直接 读readFile 再写入 writeFile
 ````javascript
 // 拷贝方法  不能读一点写一点，想指定位置读取
@@ -990,7 +1097,7 @@ fs.readFile(path.join(__dirname,'1.txt'),(err,data)=>{
 });
 ````
 
-## open
+## 🌹🌹 open
 `fs.open(filename,flags,[mode],callback);`
 > mode:权限 r 4  w 2   x 1  chmod 777 666 0o438
 > `callback:(err,fd)=>{}`  fd:file descriptor 文件描述符(数字类型) ReadStream 使用的整数型文件描述符
@@ -1005,7 +1112,7 @@ fs.open(path.join(__dirname,'1.txt'),'w',(err,fd)=>{
 })
 ````
 
-## 写入指定内容 open + write
+## 🌹🌹 写入指定内容 open + write
 
 ````javascript
 fs.open(path.join(__dirname,'1.txt'),'w',(err,fd)=>{
@@ -1022,7 +1129,7 @@ fs.open(path.join(__dirname,'1.txt'),'w',(err,fd)=>{
 
 ````
 
-## 读取指定内容 open + read
+## 🌹🌹 读取指定内容 open + read
 ````javascript  
 fs.open(path.join(__dirname,'1.txt'),'r',(err,fd)=>{
     let buffer = Buffer.alloc(5);
@@ -1043,7 +1150,7 @@ fs.open(path.join(__dirname,'1.txt'),'r',(err,fd)=>{
 });
 ````
 
-## 拷贝指定位置 open + read + write
+## 🌹🌹 拷贝指定位置 open + read + write
 
 ````javascript
 let fs = require('fs');
@@ -1084,9 +1191,9 @@ fs.open(path.join(__dirname, '1.txt'), 'r', (err, rfd) => {
 
 ````
 
-## 目录操作 
+## 🌹🌹 目录操作 
 
-### 创建目录
+### 🌹🌹🌹 创建目录
 > fs.mkdir(path[, mode], callback)
 > 要求父目录必须存在
 
@@ -1101,6 +1208,7 @@ fs.access('/etc/passwd', fs.constants.R_OK | fs.constants.W_OK, (err) => {
 * 广度优先遍历
 
 异步创建多级目录 async + await
+> 
 ````javascript
 let fs = require('fs');
 let util = require('util');
@@ -1165,12 +1273,8 @@ makep('e/d/e/g/s/q',()=>{
 })
 ````
 
-### 删除目录
 
-### 删除文件
-`fs.unlink(path, callback)`
-
-### 查看文件目录信息
+### 🌹🌹🌹 查看文件目录信息
 `fs.stat(path, callback)`
 > stats.isFile()
 stats.isDirectory()
@@ -1178,13 +1282,13 @@ atime(Access Time)上次被读取的时间。
 ctime(State Change Time)：属性或内容上次被修改的时间。
 mtime(Modified time)：档案的内容上次被修改的时间。
 
-###  移动文件或目录
+### 🌹🌹🌹 移动文件或目录
 `fs.rename(oldPath, newPath, callback)`
 
-### 读取目录下所有文件
+### 🌹🌹🌹 读取目录下所有文件
 `fs.readdir(path[, options], callback)`
 
-### 截断文件
+### 🌹🌹🌹 截断文件
 `fs.ftruncate(fd[, len], callback)`
 
 ````javascript
@@ -1195,10 +1299,15 @@ fs.ftruncate(fd, 4, (err) => {
 });
 ````
 
-### 删除非空目录
+### 🌹🌹🌹 删除目录
+`rmdir`
+### 🌹🌹🌹 删除文件
+`fs.unlink(path, callback)`
+
+### 🌹🌹🌹 删除非空目录
 `rmdirSync` `rmdir` `unlink`
 
-#### 简单实现
+#### 🌹🌹🌹🌹 简单实现
 ````javascript
 // 如果删除一个文件夹 先读取出 文件夹的内容fs.readdir
 // 判断当前这个路径是文件夹还是文件，文件的状态 fs.stat
@@ -1221,7 +1330,7 @@ fs.readdir('a',function (err,files) {
 });
 ````
 
-#### 先序广度遍历
+#### 🌹🌹🌹🌹 先序广度遍历
 ````javascript  
 let fs  =require('fs');
 let path = require('path');
@@ -1242,7 +1351,7 @@ function rmdirSync(dir){
 rmdirSync('a');
 // 用传统的回调 fs.readdir  fs.rmdir 实现广度删除
 ````
-#### Promise版
+#### 🌹🌹🌹🌹 Promise版
 ````javascript
 // 1、异步primise 深度优先 删除
 let {promisify} = require('util'); // async - > await
@@ -1288,7 +1397,7 @@ removePromise('a').then(()=>{
 })
 ````
 
-#### 并行
+#### 🌹🌹🌹🌹 并行
 ````javascript
 function removeDir(dir, cb) {
     fs.stat(dir,(err,statObj)=>{
@@ -1320,7 +1429,7 @@ function removeDir(dir, cb) {
 
 ````
 
-#### 异步深度优先 （串行 series paralle）
+#### 🌹🌹🌹🌹 异步深度优先 （串行 series paralle）
 ````javascript
 function removeDir(dir,cb) { 
     fs.stat(dir,(err,statObj)=>{
@@ -1347,7 +1456,7 @@ removeDir('a',()=>{
 });
 ````
 
-#### 深度 有儿子就深入进去
+#### 🌹🌹🌹🌹 深度 有儿子就深入进去
 ````javascript
 function removeDirSync(dir) {
   let stateObj = fs.statSync(dir);
@@ -1366,8 +1475,104 @@ function removeDirSync(dir) {
 }
 removeDirSync('a');
 ````
+## 🌹🌹 flags 🚩
+| 符号 | 含义 |
+| - | - |
+| r	| 读文件，文件不存在报错
+| r+	| 读取并写入，文件不存在报错
+| rs	| 同步读取文件并忽略缓存
+| w	| 写入文件，不存在则创建，存在则清空
+| wx	| 排它写入文件
+| w+	| 读取并写入文件，不存在则创建，存在则清空
+| wx+	| 和w+类似，排他方式打开
+| a	| 追加写入
+| ax	| 与a类似，排他方式写入
+| a+	| 读取并追加写入，不存在则创建
+| ax+	| 作用与a+类似，但是以排他方式打开文件
 
-# 流
+## 🌹🌹 附录
+* r 读取
+* w 写入
+* s 同步
+* + 增加相反操作
+* x 排他方式
+* r+ w+的区别?
+    * 当文件不存在时，r+不会创建，而会导致调用失败，但w+会创建。
+    * 如果文件存在，r+不会自动清空文件，但w+会自动把已有文件的内容清空。
+
+## 🌹🌹 linux权限
+### 👀 查看  
+`ls -l`  `ls -l xxx.xx`  
+### 🌰 栗子 
+> `-rw-r--r--   1 bingyang  staff   12  7 16 17:18 CNAME`  
+> 文件类型与权限	链接占用的节点(i-node) 文件所有者 文件所有者的用户组 文件大小 文件的创建时间 最近修改时间 文件名称  
+
+
+# 🌹 path
 ---
-### todo
+## 🌹🌹 path是node中专门处理路径的一个核心模块
+* path.join 将多个参数值字符串结合为一个路径字符串
+* path.basename 获取一个路径中的文件名
+* path.extname 获取一个路径中的扩展名
+* path.sep 操作系统提定的文件分隔符
+* path.delimiter 属性值为系统指定的环境变量路径分隔符
+* path.normalize 将非标准的路径字符串转化为标准路径字符串 特点：
+可以解析 . 和 ..
+多个杠可以转换成一个杠
+在windows下反杠会转化成正杠
+如结尾以杠结尾的，则保留斜杠
+
+* path.resolve
+> 以应用程序根目录为起点
+如果参数是普通字符串，则意思是当前目录的下级目录
+如果参数是.. 回到上一级目录
+如果是/开头表示一个绝对的根路径
+
+````javascript
+var path = require('path');
+var fs = require('fs');
+/**
+ * normalize 将非标准化的路径转化成标准化的路径
+ * 1.解析. 和 ..
+ * 2.多个斜杠会转成一个斜杠
+ * 3.window下的斜杠会转成正斜杠
+ * 4.如果以斜杠会保留
+ **/
+
+console.log(path.normalize('./a////b//..\\c//e//..//'));
+//  \a\c\
+
+//多个参数字符串合并成一个路径 字符串
+console.log(path.join(__dirname,'a','b'));
+
+/**
+ * resolve
+ * 以就用程序为根目录，做为起点，根据参数解析出一个绝对路径
+ *  1.以应用程序为根起点
+ *  2... .
+ *  3. 普通 字符串代表子目录
+ *  4. /代表绝地路径根目录
+ */
+console.log(path.resolve());//空代表当前的目录 路径
+console.log(path.resolve('a','/c'));// /a/b
+// d:\c
+//可以获取两个路径之间的相对关系
+console.log(path.relative(__dirname,'/a'));
+// a
+//返回指定路径的所在目录
+console.log(path.dirname(__filename)); // 9.path
+console.log(path.dirname('./1.path.js'));//  9.path
+//basename 获取路径中的文件名
+console.log(path.basename(__filename));
+console.log(path.basename(__filename,'.js'));
+console.log(path.extname(__filename));
+
+console.log(path.sep);//文件分隔符 window \ linux /
+console.log(path.win32.sep);
+console.log(path.posix.sep);
+console.log(path.delimiter);//路径 分隔符 window ; linux :
+````
+# 🌹 流
+---
+## 🌹🌹 
 
