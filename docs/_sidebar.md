@@ -10,6 +10,9 @@
     * [✅ nodeJS超长笔记 1 ](/zhufeng/1.node/1.note)
     * [✈️ nodeJS超长笔记 2（更新中）](/zhufeng/1.node/2.note)
     * [✈️ KOA（更新中）](/zhufeng/1.node/3.note)
+
+* 🐳 算法与数据结构
+    * [✈️ 算法](/leetcode/)
   
 * 🐳  ✈️ 面试整理
   
@@ -30,8 +33,5 @@
   
 * 🐳 nodeJS
     * [✈️ 全栈工程师之路-Node.js](/node/)
-
-* 🐳 算法与数据结构
-    * [✈️ 算法](/leetcode/)
   
 * [🐳 前端开发工具](/tools/)
