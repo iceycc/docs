@@ -1574,5 +1574,84 @@ console.log(path.delimiter);//路径 分隔符 window ; linux :
 ````
 # 🌹 流
 ---
-## 🌹🌹 
+## 🌹🌹 流的概念
+* 流是一组有序的，有起点和终点的字节数据传输手段
+* 它不关心文件的整体内容，只关注是否从文件中读到了数据，以及读到数据之后的处理
+* 流是一个抽象接口，被 Node 中的很多对象所实现。比如HTTP 服务器request和response对象都是流。
+
+## 🌹🌹 可读流 createReadStream
+### 创建可读流
+````javascript
+let fs = require('fs');
+// 创建可读流 自己读取，或者等待发射 
+// 返回的就是一个可读流
+let rs = fs.createReadStream('1.txt', {
+  flags: 'r', // 如何操作文件
+  encoding: null, // 读取文件的编码格式 默认buffer
+  autoClose: true, // 读取完毕后 是否自动关闭
+  start: 0, // 开始读取的位置
+  end: 15, // 结束位置( 包后 )
+  highWaterMark: 4 // 64k每次默认读取64k
+});
+````
+###  监听事件
+1. 直接监听data事件 (newListener=> 内部会自动触发data事件) 
+````javascript
+// 相当于流动模式,监听data方法后不停的触发 直到读取完毕为止
+// let arrs = [];
+// rs.setEncoding('utf8');
+rs.on('data', (data) => {
+  //arrs.push(data);
+  rs.pause(); // 可以暂停data事件的触发
+  setTimeout(() => {
+    console.log('恢复')
+    rs.resume(); // 恢复的也是data事件
+  }, 1000);
+});
+````
+2.  监听end事件
+该事件会在读完数据后被触发
+````javascript
+rs.on('end', function () {
+  // 拼接后将结果一起打印出来
+  console.log(Buffer.concat(arrs).toString());
+});
+````
+3. 监听error事件
+````javascript
+rs.on('error', function (err) {
+    console.log(err);
+});
+````
+4. 监听open事件
+````javascript
+rs.on('open', function () {
+    console.log(err);
+});
+````
+5. 监听close事件
+````javascript
+rs.on('close', function () {
+    console.log(err);
+});
+````
+### 其他事件
+1. 设置编码
+与指定 `{encoding:'utf8'}`效果相同，设置编码
+````javascript
+rs.setEncoding('utf8');
+````
+2. 暂停和恢复触发data
+`通过pause()方法和resume()方法`
+````javascript
+rs.on('data', function (data) {
+    rs.pause();
+    console.log(data);
+});
+setTimeout(function () {
+    rs.resume();
+},2000);
+````
+## 🌹🌹 可写流 createWriteStream
+
 
