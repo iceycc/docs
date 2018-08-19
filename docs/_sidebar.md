@@ -7,7 +7,8 @@
   
 * 🐳 前端构架成长之路
     * [✅ 前端构架之旅](/zhufeng/)
-    * [✈️ nodeJS超长笔记（持续更新）](/zhufeng/1.node/note)
+    * [✈️ nodeJS超长笔记 1 ](/zhufeng/1.node/1.note)
+    * [✈️ nodeJS超长笔记 2（持续更新）](/zhufeng/1.node/2.note)
   
 * 🐳 面试整理
   
