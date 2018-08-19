@@ -1,8 +1,8 @@
-# 😄冰洋🆚前端杂货铺😊
+# 😄 冰洋 ✈️ 前端 🐶 杂货铺 😊
 ![logo](_media/icon1.svg)
 
-[GitHub](https://github.com/iceycc/docs/)
-[点击阅读](/README.md)
+[👍 GitHub](https://github.com/iceycc/docs/)
+[点击 👀](/README.md)
 
 <!-- 背景图片 -->
 
