@@ -145,3 +145,55 @@ solution(10) // 23
 solution(16) // 60
 ```
 注意，如果输入负数，返回0
+
+### 9. 2018年8月21日
+写一个二分查找函数`bsearch`，和之前学习的二分查找函数有一定的变化。
+
+```
+function bsearch(A, x) {
+  /// TODO
+}
+
+```
+A是一个已排序的数组，x是目标值。
+
+1. 如果找到目标值，返回目标值在数组中的序号。 
+2. 如果没有找到目标值，返回目标值应该被插入的位置
+
+
+比如数组: A=3,5,7,13,22,25
+
+```
+bsearch(A,5) // 1
+bsearch(A,13) // 3
+bsearch(A,4) // 1
+bsearch(-1) // 0
+bsearch(-10000) // 0
+bsearch(30) // 6
+```
+
+写好后请在201808/20180821目录 下面建一个 姓名.md 的文件,请注意代码一定要用反引号包裹一下。
+
+```js
+function bsearch(A, x){
+  let l = 0,
+      r = A.length - 1,
+      guess
+      
+  while(l<=r) {
+    guess = Math.floor( (l + r) / 2 )
+    if(A[guess] === x) return guess
+    if(A[guess] > x) {
+      if(guess === 0 || A[guess - 1] < x) {
+        return guess
+      }
+      r = guess - 1
+    } else {
+      if(guess === A.length - 1 || A[guess + 1] > x) {
+        return guess + 1
+      }
+      l = guess + 1
+    }
+  }
+}
+```
