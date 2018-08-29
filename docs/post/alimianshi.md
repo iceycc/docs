@@ -153,5 +153,60 @@ Get 请求不对数据进行修改
 eval 执行上下文
 ## 16 请说说你对Event loop的理解？浏览器中的Event loop和Node中的Event loop的异同？
 ## 17 0.1 + 0.2 != 0.3?
+## 18 Service workers 
+Service workers 本质上充当Web应用程序与浏览器之间的代理服务器，也可以在网络可用时作为浏览器和网络间的代理。它们旨在（除其他之外）使得能够创建有效的离线体验，拦截网络请求并基于网络是否可用以及更新的资源是否驻留在服务器上来采取适当的动作。他们还允许访问推送通知和后台同步API。
+目前该技术通常用来做缓存文件，提高首屏速度，可以试着来实现这个功能。
+````javascript
+// index.js
+if (navigator.serviceWorker) {
+  navigator.serviceWorker
+    .register("sw.js")
+    .then(function(registration) {
+      console.log("service worker 注册成功");
+    })
+    .catch(function(err) {
+      console.log("servcie worker 注册失败");
+    });
+}
+// sw.js
+// 监听 `install` 事件，回调中缓存所需文件
+self.addEventListener("install", e => {
+  e.waitUntil(
+    caches.open("my-cache").then(function(cache) {
+      return cache.addAll(["./index.html", "./index.js"]);
+    })
+  );
+});
+
+// 拦截所有请求事件
+// 如果缓存中已经有请求的数据就直接用缓存，否则去请求数据
+self.addEventListener("fetch", e => {
+  e.respondWith(
+    caches.match(e.request).then(function(response) {
+      if (response) {
+        return response;
+      }
+      console.log("fetch source");
+    })
+  );
+});
+````
+## 18 你在项目中如何进行 Webpack 优化?
+1. 缩小文件搜索范围,配置比如resolve.modules,resolve.modules,resolve.mainFields,resolve.alias ,resolve.extensions ,module.noParse 配置
+2. 使用DllPlugin 要给 Web 项目构建接入动态链接库
+3. HappyPack 就能让 Webpack 做到这点，它把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程
+4. 当 Webpack 有多个 JavaScript 文件需要输出和压缩时，原本会使用 UglifyJS 去一个个挨着压缩再输出， 但是 ParallelUglifyPlugin 则会开启多个子进程，把对多个文件的压缩工作分配给多个子进程去完成
+5. 可以监听文件的变化，当文件发生变化后可以自动刷新浏览器，从而提高开发效率。
+6. (Hot Module Replacement)的技术可在不刷新整个网页的情况下做到超灵敏的实时预览。 原理是当一个源码发生变化时，只重新编译发生变化的模块，再用新输出的模块替换掉浏览器中对应的老模块。
+7. Tree Shaking 可以用来剔除 JavaScript 中用不上的死代码。它依赖静态的 ES6 模块化语法，例如通过 import 和 export 导入导出
+8. 可以使用CommonsChunkPlugin 把多个页面公共的代码抽离成单独的文件进行加载
+9. Webpack 内置了强大的分割代码的功能去实现按需加载，可以用import实现路由按需加载。
+10. Scope Hoisting 可以让 Webpack 打包出来的代码文件更小、运行的更快， 它又译作 "作用域提升"
+11. 可以使用可视化分析工具 Webpack Analyse等去分析输出结果，从页进行优化.
+12. 对于 Webpack4，打包项目使用 production 模式，这样会自动开启代码压缩
+13. 优化图片，对于小图可以使用 base64 的方式写入文件中
+14. 给打包出来的文件名添加哈希，实现浏览器缓存文件
+## 19 请说一下ES6中 Generator 的实现原理?
+
 
 
