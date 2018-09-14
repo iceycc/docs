@@ -15,6 +15,7 @@
     * [✈️ 算法](/leetcode/)
   
 * 🐳  ✈️ 面试整理
+    * [✈️ 每日一题](/post/alimianshi)
   
 * [🐳 前端三板斧](/base/)
     * [✈️ JavaScript](/base/javascript)

@@ -1,4 +1,4 @@
-## 每日一题
+每日一题
 
 ## 1 传统布局和flex布局打区别
 
@@ -206,8 +206,108 @@ self.addEventListener("fetch", e => {
 12. 对于 Webpack4，打包项目使用 production 模式，这样会自动开启代码压缩
 13. 优化图片，对于小图可以使用 base64 的方式写入文件中
 14. 给打包出来的文件名添加哈希，实现浏览器缓存文件
-  
-## 19 请说一下ES6中 Generator 的实现原理?
+
+---
+
+## 829 请说一下ES6中 Generator 的实现原理?
+
+
+---
+## 830 什么是IFC？IFC的作用？
+
+---
+## 831 什么是跨越？常用的跨越方式有哪些？
+
+---
+## 903 请说说cookie，localStorage，sessionStorage，indexDB之间的区别的使用场景?
+### 参考答案
+![![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/174526_8cc00885_2111182.jpeg "mmexport1536313311510.jpg")](https://images.gitee.com/uploads/images/2018/0907/174508_3703ad98_2111182.jpeg "mmexport1536313308748.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/174620_fef84214_2111182.jpeg "mmexport1536313311510.jpg")
+
+### 参考文献
+- [前端存储之sessionStorage、localStorage、cookie和indexedDB](https://blog.csdn.net/qq_29132907/article/details/80389398)
+
+---
+
+## 904 写一个函数find_missing(A, low, high)，给定一个范围[low,high]，寻找一个数组中缺失的元素。
+````javascript
+find_missing([10, 12, 11, 15], 10, 15) // [13,14]
+// 注: low=10 high = 15
+
+find_missing([1, 14, 11, 51, 15],50, 55) // [50, 52, 53, 54]
+// 注：low = 50, hight = 55
+
+````
+### 答案
+本题考查对算法复杂度的理解，简单两次循环或者filter/map等等嵌套循环，可以在O( (high -low) * A.length )复杂度完成，但是通过排序可以优化到O(nlgn)+O(high - low)。
+``` javascript
+function find_missing(A, low, high){
+  const B = A.filter(x => x >= low && x < high).sort((x,y) => x - y)
+  let j = 0
+  return [...Array(high - low )]
+    .map((_, i) => i+low)
+    .filter(x => B[j] !== x ? true : !!!++j) 
+}
+```
+
+---
+
+## 905 讲讲输入完网址按下回车，到看到网页这个过程中发生了什么?
+### 答案
+### 参考资料
+[浏览器渲染页面](https://segmentfault.com/a/1190000010298038)
+
+---
+
+## 906 谈谈你对前端资源下载性能优化的经验和思考?
+---
+
+## 907 IP协议属于哪一层？主要功能是干什么的？
+### 参考答案:
+IP协议对应于OSI标准模型的网络层。
+IP协议的主要功能－用途：在相互连接的网络之间传递IP数据报。其中包括两个部分：
+
+（1）寻址与路由。
+(a)用IP地址来标识Internet的主机：在每个IP数据报中，都会携带源IP地址和目标IP地址来标识该IP数据报的源和目的主机。IP数据报在传输过程中，每个中间节点(IP 网关)还需要为其选择从源主机到目的主机的合适的转发路径(即路由)。IP协议可以根据路由选择协议提供的路由信息对IP数据报进行转发，直至抵达目的主机。
+(b)IP地址和MAC地址的匹配，ARP协议。数据链路层使用MAC地址来发送数据帧，因此在实际发送IP报文时，还需要进行IP地址和MAC地址的匹配，由TCP/IP协议簇中的ARP(地址解析协议)完成。
+
+（2） 分段与重组。
+(a) IP数据报通过不同类型的通信网络发送，IP数据报的大小会受到这些网络所规定的最大传输单元(MTU)的限制。
+(b)将IP数据报拆分成一个个能够适合下层技术传输的小数据报，被分段后的IP数据报可以独立地在网络中进行转发，在到达目的主机后被重组，恢复成原来的IP数据报。
+### 参考资料:
+---
+
+## 910 js 中的 new()到底做了些什么?
+### 参考答案:
+new 运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。
+
+当代码 new Foo(...)执行时，会发生以下事情：
+
+一个继承自 Foo.prototype 的新对象被创建。
+
+使用指定的参数调用构造函数 Foo，并将 this 绑定到新创建的对象。new Foo 等同于 new Foo()，也就是没有指定参数列表，Foo 不带任何参数调用的情况。
+
+由构造函数返回的对象就是 new 表达式的结果。如果构造函数没有显式返回一个对象，则使用步骤 1 创建的对象。（一般情况下，构造函数不返回值，但是用户可以选择主动返回对象，来覆盖正常的对象创建步骤）
+
+```javascript
+var cat = new Animal("cat");
+new Animal("cat") = {
+    var obj = {};
+    obj.__proto__ = Animal.prototype;
+    var result = Animal.call(obj,"cat");
+    return typeof result === 'object'? result : obj;
+}
+```
+1. 创建一个空对象 obj;
+2. 把 obj 的 `__proto__` 指向 Animal 的原型对象 prototype，此时便建立了 obj 对象的原型链：obj->Animal.prototype->Object.prototype->null
+3. 在 obj 对象的执行环境调用 Animal 函数并传递参数“cat”。 相当于 `var result = obj.Animal("cat")`。当这句执行完之后，obj 便产生了属性name 并赋值为"cat"。【关于 JS 中 call 的用法请阅读：JS 的 call 和 apply】
+4. 考察第 3 步返回的返回值，如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；否则会将返回值作为新对象返回。
+
+
+### 参考资料:
+- [JS 的 call 和 apply](https://github.com/lin-xin/blog/issues/7)
+- 
+---
 
 ## 911 下面是一个bind方法的Polyfill,请逐句给别人讲解一下每一行代码的含义
 ````javascript
@@ -237,6 +337,7 @@ Function.prototype.bind = function(oThis) {
 ### 参考资料:
 - [bind](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
+---
 
 ## 912 你的移动端适配怎么做的？
 ### 媒体查询
@@ -259,7 +360,9 @@ Function.prototype.bind = function(oThis) {
 张巍耀老师基于flexible的rem解决方案(在上一个部门支撑了基本所有的SPA和多页面网页，对PC端、iPad、Android缩放等问题都进行了特殊处理)：[rem-moka](https://github.com/geeknull/rem-moka)
 本来rem-moka我也写了一篇源码解析文章，只不过还没来记得发，大家有兴趣可以看看源码
 
+---
 ## 913 请说一下在JS中this的完整取值规则? 
+
 this跟函数在哪里定义没有关系，函数在哪里调用才决定了this到底引用的是啥   
 this机制的四种规则 
 1. 默认绑定全局变量,这条规则是最常见的，也是默认的。当函数被单独定义和调用的时候，应用的规则就是绑定全局变量。 
@@ -267,6 +370,7 @@ this机制的四种规则
 3. 显示绑定 学过bind()\apply()\call()函数的都应该知道，它接收的第一个参数即是上下文对象并将其赋给this。 
 4. new新对象绑定 如果是一个构造函数，那么用new来调用，那么绑定的将是新创建的对象
 
+---
 
 ## 914 请说一下谈谈JS中的垃圾回收机制？ 
 1. V8 实现了准确式 GC，GC 算法采用了分代式垃圾回收机制。因此，V8 将内存（堆）分为新生代和老生代两部分。 #新生代算法 新生代中的对象一般存活时间较短，使用 Scavenge GC 算法。 在新生代空间中，内存空间分为两部分，分别为 From 空间和 To 空间。在这两个空间中，必定有一个空间是使用的，另一个空间是空闲的。新分配的对象会被放入 From 空间中，当 From 空间被占满时，新生代 GC 就会启动了。算法会检查 From 空间中存活的对象并复制到 To 空间中，如果有失活的对象就会销毁。当复制完成后将 From 空间和 To 空间互换，这样 GC 就结束了。
