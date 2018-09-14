@@ -206,7 +206,69 @@ self.addEventListener("fetch", e => {
 12. 对于 Webpack4，打包项目使用 production 模式，这样会自动开启代码压缩
 13. 优化图片，对于小图可以使用 base64 的方式写入文件中
 14. 给打包出来的文件名添加哈希，实现浏览器缓存文件
+  
 ## 19 请说一下ES6中 Generator 的实现原理?
 
+## 911 下面是一个bind方法的Polyfill,请逐句给别人讲解一下每一行代码的含义
+````javascript
+Function.prototype.bind = function(oThis) {
+    if (typeof this !== 'function') {
+      throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+    }
+    var aArgs   = Array.prototype.slice.call(arguments, 1),
+        fToBind = this,
+        fNOP    = function() {},
+        fBound  = function() {
+          return fToBind.apply(this instanceof fNOP
+                 ? this
+                 : oThis,
+                 aArgs.concat(Array.prototype.slice.call(arguments)));
+        };
+    if (this.prototype) {
+      fNOP.prototype = this.prototype; 
+    }
+    fBound.prototype = new fNOP();
+    return fBound;
+};
+````
+
+### 参考答案:
+
+### 参考资料:
+- [bind](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
 
+## 912 你的移动端适配怎么做的？
+### 媒体查询
+其实媒体查询方式除了类似bootstrap之类的基础类库 很少在真实项目中使用
+### 百分比+px
+百分比+px方式对于适配开发者来说最容易 但是自适应性比较差 demo小项目用下还可以 我自己在小项目也会使用
+### rem(比较主流)
+* rem方式是目前比较主流的 知名的方案有淘宝的flexible 基本原理是将页面宽度分成10份 但是这时候页面的rem大小已经没法口算了 需要接入postcss之类的构建工具才能够使用 待vw单位兼容性渐渐不那么严重了 就可以使用vw替代flexible vw是将页面分成100份 基本思路是一致的
+* 另外一种rem布局思路是在默认设计稿尺寸的时候设置根元素font 为100px或者50px 好处是rem值可以根据设计稿标注口算 但是不会兼容vw了 看怎么取舍
+* 那么rem vw 就没有问题吗？不是的！ rem 还是 vw 在使用额时候都会出现小数点 小数点会造成精度缺失 在雪碧图或者其他极端精确像素的场景 总会出现裁剪错误 同时rem不适合用在文字大小上 文字大小用px会更合适
+### vw
+* 拓展阅读： vw布局
+### 参考资料
+* https://www.w3cplus.com/css/vw-for-layout.html
+张巍耀老师总结的一些文章：
+1. [移动端屏幕像素的那些事](https://mp.weixin.qq.com/s/y2kzv5S2TvkMwgwZPbSyKA)
+2. [再说viewport](https://mp.weixin.qq.com/s/DFOrEUsVqmujHW7tADsH0g)
+3. [移动端下的1px](https://mp.weixin.qq.com/s/N2vRHKOE9WH_TAtwBaiX_Q)
+4. [移动端REM方案-Flexible源码分析](https://mp.weixin.qq.com/s/ALXtRYIsaFM4FPEj3zwKqQ)
+张巍耀老师基于flexible的rem解决方案(在上一个部门支撑了基本所有的SPA和多页面网页，对PC端、iPad、Android缩放等问题都进行了特殊处理)：[rem-moka](https://github.com/geeknull/rem-moka)
+本来rem-moka我也写了一篇源码解析文章，只不过还没来记得发，大家有兴趣可以看看源码
+
+## 913 请说一下在JS中this的完整取值规则? 
+this跟函数在哪里定义没有关系，函数在哪里调用才决定了this到底引用的是啥   
+this机制的四种规则 
+1. 默认绑定全局变量,这条规则是最常见的，也是默认的。当函数被单独定义和调用的时候，应用的规则就是绑定全局变量。 
+2. 隐式绑定 隐式调用的意思是，函数调用时拥有一个上下文对象，就好像这个函数是属于该对象的一样 
+3. 显示绑定 学过bind()\apply()\call()函数的都应该知道，它接收的第一个参数即是上下文对象并将其赋给this。 
+4. new新对象绑定 如果是一个构造函数，那么用new来调用，那么绑定的将是新创建的对象
+
+
+## 914 请说一下谈谈JS中的垃圾回收机制？ 
+1. V8 实现了准确式 GC，GC 算法采用了分代式垃圾回收机制。因此，V8 将内存（堆）分为新生代和老生代两部分。 #新生代算法 新生代中的对象一般存活时间较短，使用 Scavenge GC 算法。 在新生代空间中，内存空间分为两部分，分别为 From 空间和 To 空间。在这两个空间中，必定有一个空间是使用的，另一个空间是空闲的。新分配的对象会被放入 From 空间中，当 From 空间被占满时，新生代 GC 就会启动了。算法会检查 From 空间中存活的对象并复制到 To 空间中，如果有失活的对象就会销毁。当复制完成后将 From 空间和 To 空间互换，这样 GC 就结束了。
+2. 老生代算法 老生代中的对象一般存活时间较长且数量也多，使用了两个算法，分别是标记清除算法和标记压缩算法。 在讲算法前，先来说下什么情况下对象会出现在老生代空间中： 新生代中的对象是否已经经历过一次 Scavenge 算法，如果经历过的话，会将对象从新生代空间移到老生代空间中。 To 空间的对象占比大小超过 25 %。在这种情况下，为了不影响到内存分配，会将对象从新生代空间移到老生代空间中。
+3. 在老生代中，以下情况会先启动标记清除算法： 某一个空间没有分块的时候 空间中被对象超过一定限制 空间不能保证新生代中的对象移动到老生代中 在这个阶段中，会遍历堆中所有的对象，然后标记活的对象，在标记完成后，销毁所有没有被标记的对象。在标记大型对内存时，可能需要几百毫秒才能完成一次标记。这就会导致一些性能上的问题。为了解决这个问题，2011 年，V8 从 stop-the-world 标记切换到增量标志。在增量标记期间，GC 将标记工作分解为更小的模块，可以让 JS 应用逻辑在模块间隙执行一会，从而不至于让应用出现停顿情况。但在 2018 年，GC 技术又有了一个重大突破，这项技术名为并发标记。该技术可以让 GC 扫描和标记对象时，同时允许 JS 运行。 清除对象后会造成堆内存出现碎片的情况，当碎片超过一定限制后会启动压缩算法。在压缩过程中，将活的对象像一端移动，直到所有对象都移动完成然后清理掉不需要的内存。
