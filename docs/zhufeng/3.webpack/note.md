@@ -322,6 +322,66 @@ compress.warnings：是否在 UglifyJs 删除没有用到的代码时输出警�
 - drop_console：是否剔除代码中所有的 console 语句，默认为不剔除。开启后不仅可以提升代码压缩效果，也可以兼容不支持 console 语句 IE 浏览器。
 - collapse_vars：是否内嵌定义了但是只用到一次的变量，例如把 var a = 1; b = a转换成 b = 1，默认为不转换。为了达到更好的压缩效果，可以设置为 true。
 - reduce_vars： 是否提取出出现多次但是没有定义成变量去引用的静态值，例如把 a = 'zfpx'; b = 'zfpx' 转换成 var c = 'zfpx'; a = c; b = c，默认为不转换。为了达到更好的压缩效果，可以设置为 true。
+    ````javascript
+    const UglifyJSPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+    module.exports = {
+    plugins: [
+        // 压缩输出的 JS 代码
+        new UglifyJSPlugin({
+        compress: {
+            // 在UglifyJs删除没有用到的代码时不输出警告
+            warnings: false,
+            // 删除所有的 `console` 语句，可以兼容ie浏览器
+            drop_console: true,
+            // 内嵌定义了但是只用到一次的变量
+            collapse_vars: true,
+            // 提取出出现多次但是没有定义成变量去引用的静态值
+            reduce_vars: true,
+        },
+        output: {
+            // 最紧凑的输出
+            beautify: false,
+            // 删除所有的注释
+            comments: false,
+        }
+        }),
+    ],
+    };
+    ````
+
+### 压缩 ES6
+所以在运行环境允许的情况下，我们要尽可能的使用原生的 ES6 代码去运行
+* 一样的逻辑用 ES6 实现的代码量比 ES5 更少
+* JavaScript 引擎对 ES6 中的语法做了性能优化，例如针对 const 申明的变量有更快的读取速度
+* UglifyJS 只认识 ES5 语法的代码
+* 需要去掉babel配置文件中的babel-preset-env
+* uglifyjs-webpack-plugin
+
+安装：
+`npm install uglifyjs-webpack-plugin -D`
+````javascript
+const UglifyESPlugin = require('uglifyjs-webpack-plugin')
+module.exports = {
+  plugins: [
+    new UglifyESPlugin({
+      // 多嵌套了一层
+      uglifyOptions: {
+        compress: { // 编译配置
+          warnings: false, // 在UglifyJs删除没有用到的代码时不输出警告
+          drop_console: true, // 删除所有的 `console` 语句，可以兼容ie浏览器
+          collapse_vars: true, // 内嵌定义了但是只用到一次的变量
+          reduce_vars: true,  // 提取出出现多次但是没有定义成变量去引用的静态值
+        },
+        output: {
+          beautify: false,  // 最紧凑的输出
+          comments: false, // 删除所有的注释
+        }
+      }
+    })
+  ]
+}
+
+````
 
 # webpack 优化
 
