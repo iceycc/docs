@@ -571,11 +571,238 @@ module:{
 ### 安装 postcss-loader
 ```npm install postcss-loader autoprefixer -D```
 
+### 上代码
+index.css
+````css
+::placehoder {
+    color:red
+}
+````
+postcss.config.js
+````javascript
+module.exports = {
+    plugins:[
+        require('autoprefixer')
+    ]
+}
+````
+
+webpack.config.js
+````javascript
+module:{
+    rules:[
+        {
+            test:/\.css$/,
+            use:[MiniCssExtractPlugin.loader,'css-loader','postcss-loader'],
+            include:path.join(__dirname,'./src'),
+            exclude:/node_modules/
+        }
+    ]
+}
+````
+
+## 10. 转义 ES6/ES7/JSX
+Babel其实是一个编译JavaScript的平台,可以把ES6/ES7,React的JSX转义为ES5
+
+### 安装依赖包
+``` npm i babel-core babel-loader babel-preset-env babel-preset-stage-0 babel-preset-react babel-plugin-transform-decorators-legacy -D ```
+
+### 栗子 、
+decorator
+````javascript
+ffunction readonly(target,key,discriptor) {
+    discriptor.writable=false;
+}
+class Person{
+    @readonly PI=3.14;
+}
+let p1=new Person();
+p1.PI=3.15;
+console.log(p1)
+````
+
+jsconfig.js
+````javascript
+{
+    "compilerOptions":{
+        "experimentalDecorators":true
+    }
+}
+````
+
+webpack.config.js
+````javascript
+{
+    test:/\.jx?$/,
+    use:{
+        loader:'babel-loader',
+        options:{
+            presets:['env','stage-0','react'],
+            plugins:["transform-decorators-legacy"]
+        }
+    },
+    include:path.join(__dirname,'src'),
+    exclude:/node_modules/
+}
+````
+
+### babel 优化
+* cacheDirectory：默认值为 false。当有设置时，指定的目录将用来缓存 loader 的执行结果。
+* cacheIdentifier：默认是一个babel-core版本号
+* forceEnv：默认将解析 BABEL_ENV 然后是 NODE_ENV。允许你在 loader 级别上覆盖 BABEL_ENV/NODE_ENV
+
+### babel-runtime
+* babel 在每个文件都插入了辅助代码，使代码体积过大
+* babel 对一些公共方法使用了非常小的辅助代码，比如 _extend
+* 默认情况下会被添加到每一个需要它的文件中。你可以引入 babel runtime 作为一个独立模块，来避免重复引入
+
+``` 
+npm install babel-plugin-transform-runtime --save-dev
+npm install babel-runtime --save
+```
+
+.babelrc
+````json
+{
+  "presets": ["env"],
+  "plugins": [
+    ["transform-runtime", {
+      "helpers": true,
+      "polyfill": true,
+      "regenerator": true,
+      "moduleName": "babel-runtime"
+    }]
+  ]
+````
+> webpack打包的时候，会自动优化重复引入公共方法的问题
+
+## 11 ESLint校验代码规范
+```
+npm install eslint --save-dev
+npm install eslint-loader --save-dev
+npm install babel-eslint standard --save-dev
+```
+
+配置
+````javascript
+{
+    test: /\.js$/,
+    exclude: /node_modules/,
+    loader: "eslint-loader",
+    options: {
+        fix: true
+    }
+}
+````
+
+## 12. target   ?? 
+```
+webpack 能够为多种环境或 target 构建编译
+target 告知 webpack 为目标(target)指定一个环境
+```
+
+## 13. 如何调试打包后的代码
+webpack通过配置可以自动给我们source maps文件，map文件是一种对应编译文件和源文件的方法
+
+* source-map 把映射文件生成到单独的文件，最完整最慢
+* cheap-module-source-map 在一个单独的文件中产生一个不带列映射的Map
+* eval-source-map 使用eval打包源文件模块,在同一个文件中生成完整sourcemap
+* cheap-module-eval-source-map sourcemap和打包后的JS同行显示，没有映射列
+
+> devtool:'eval-source-map'
+
+## 14. 打包第三方类库
+### 直接引入
+````javascript
+import _ from 'lodash';
+alert(_.join(['a','b','c'],'@'));
+````
+
+### 插件引入
+_ 函数会自动添加到当前模块的上下文，无需显示声明
+````javascript
+  new webpack.ProvidePlugin({
+      _:'lodash'
+  })
+````
+> 没有全局的`_`或者 `$` 函数，所以导入依赖全局变量的插件依旧会失败
+
+### expose-loader   ???? 
+不需要任何其他的插件配合，只要将下面的代码添加到所有的loader之前
+````javascript
+require("expose-loader?libraryName!./file.js");
+````
+webpack.config.js
+````javascript
+{ 
+    test: require.resolve("jquery"), 
+    loader: "expose-loader?jQuery"
+}
+````
+
+````javascript
+require("expose-loader?$!jquery");
+````
+
+### externals
+
+如果我们想引用一个库，但是又不想让webpack打包，并且又不影响我们在程序中以CMD、AMD或者window/global全局等方式进行使用，那就可以通过配置externals
+
+````javascript
+ const jQuery = require("jquery");
+ import jQuery from 'jquery';
+````
+
+ webpack.config.js
+````javascript
+externals: {
+    jquery: 'jQuery'//如果要在浏览器中运行，那么不用添加什么前缀，默认设置就是global
+},
+module: {
+    
+}
+````
+
+## 15. watch
+当代码发生修改后可以自动重新编译
+
+````javascript
+watch: true,
+watchOptions: {
+    ignored: /node_modules/, //忽略不用监听变更的目录
+    poll:1000, //每秒询问的文件变更的次数
+    aggregateTimeout: 500, //防止重复保存频繁重新编译,500毫秒内重复保存不打包
+}
+````
+* webpack定时获取文件的更新时间，并跟上次保存的时间进行比对，不一致就表示发生了变化,poll就用来配置每秒问多少次
+* 当检测文件不再发生变化，会先缓存起来，等待一段时间后之后再通知监听者，这个等待时间通过aggregateTimeout配置
+* webpack只会监听entry依赖的文件
+* 我们需要尽可能减少需要监听的文件数量和检查频率，当然频率的降低会导致灵敏度下降
+
+## 16. 添加商标
+````javascript
+new webpack.BannerPlugin('webpack学习'),
+````
+
+## 17. 拷贝静态文件
+
+## 18. 打包前清空输出目录
+
+## 19. 服务器代理
+
+## 20. resolve解析
+
+## 21. noParse
+
+## 22. DefinePlugin
+
+## 23. ignorePlugin
+
+## 24. 区分环境变量
+
+## 25. 多入口
+
+## 26. 对图片进行压缩优化
 
 
 
-
-
-# webpack 优化
-
-# webpack
