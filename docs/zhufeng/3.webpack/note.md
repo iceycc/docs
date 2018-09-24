@@ -1308,7 +1308,6 @@ npm install image-webpack-loader --save-dev
     ]
 }
 ```
-
 # 参考
 ## 常用loader列表
 webpack 可以使用 loader 来预处理文件。这允许你打包除 JavaScript 之外的任何静态资源。你可以使用 Node.js 来很简单地编写自己的 loader。 awesome-loaders
