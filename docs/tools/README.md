@@ -14,3 +14,6 @@
 * whistle  
     * https://segmentfault.com/a/1190000012159690
     * https://github.com/avwo/whistle
+
+## 云存储
+七牛云markdown图片存储教程 https://www.jianshu.com/p/6dce6094bf61
