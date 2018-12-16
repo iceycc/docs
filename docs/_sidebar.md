@@ -11,6 +11,7 @@
     * [✈️ nodeJS超长笔记 2（更新中）](/zhufeng/1.node/2.note)
     * [✈️ KOA（更新中）](/zhufeng/1.node/3.note)
     * [✈️ webpack（更新中）](/zhufeng/3.webpack/note)
+    * [✈️ javascript的设计模式](/zhufeng/Desigin)
 
 * 🐳 算法与数据结构
     * [✈️ 算法](/leetcode/)

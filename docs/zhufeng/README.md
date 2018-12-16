@@ -9,18 +9,18 @@
 - [x] 5.Nodes核心原理，手写Stream的源码
 - [x] 6.Node事件原理和发布定阅设计模式
 - [x] 7.文件系统遍历算法(同步、异步、深度、广度、先序、中序、后序)
-- [ ] 8.用TCP实现HTTP和Websocket协议
+- [x] 8.用TCP实现HTTP和Websocket协议
 - [x] 9.手写一款HTTP服务命令行工具，包括压缩、缓存、断点续传、文件上传等功
-- [ ] 10.Cookie和Session原理
+- [x] 10.Cookie和Session原理
 
 ## 二、前端工程化构建工具
-- [ ] 1.webpack4实战
-- [ ] 2.webpack优化(resolve、模块热替换、压缩、代码分割、可视化工具)
-- [ ] 3.Webpack4源码分析
-- [ ] 4.编写自定义Loader、编写自定义Plugin
-- [ ] 5.Webpack的事件机制tapable和AST抽象语法树
-- [ ] 6.如何编写Babel插件
-- [ ] 7.手写一款简易Webpack
+- [x] 1.webpack4实战
+- [x] 2.webpack优化(resolve、模块热替换、压缩、代码分割、可视化工具)
+- [x] 3.Webpack4源码分析
+- [x] 4.编写自定义Loader、编写自定义Plugin
+- [x] 5.Webpack的事件机制tapable和AST抽象语法树
+- [x] 6.如何编写Babel插件
+- [x] 7.手写一款简易Webpack
 
 ## 三、React全家桶
 
