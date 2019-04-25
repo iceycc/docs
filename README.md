@@ -1,4 +1,4 @@
-## 💰💰 切图崽🐶 的成长之路
+## 💰💰 切图崽🐶 的成长之路 cc
 ### 🐱 前端杂货铺 ：[ 杂货铺 ](https://docs.icey.cc) 
 ### 🐱 我的博客：[ 404 NOT FOUND ](https://wang.icey.cc) 
 ### 🐯 我的简历：[ resume ](https://cv.icey.cc) 😳 手机端不适配
