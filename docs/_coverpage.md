@@ -1,5 +1,5 @@
-# 🐳 冰洋 ✈️ 
-# 🐳 前端 🐶 杂货铺 ✈️
+# 🐳 程序员升职记
+# 🐳 前端杂货铺 
 ![logo](_media/icon1.svg)
 
 [👍 GitHub](https://github.com/iceycc/docs/)
