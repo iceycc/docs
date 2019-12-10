@@ -17,7 +17,10 @@
     * [✈️ 算法](/leetcode/)
   
 * 🐳  ✈️ 每日3+2
-    * [✈️ 每日一题](/post/alimianshi)
+    * [✈️ 第1天](/interview/day3+2/day001)
+    * [✈️ 第2天](/interview/day3+2/day002)
+    * [✈️ 第3天](/interview/day3+2/day003)
+    * [✈️ 第4天](/interview/day3+2/day004)
   
 * [🐳 前端三板斧](/base/)
     * [✈️ JavaScript](/base/javascript)
